@@ -1,50 +1,43 @@
 List<Map> foods = [
   {
-    "img": "assets/food1.jpeg",
-    "name": "Fruit Salad"
+    "img": "assets/garage3.jpg",
+    "name": "MZN Automobile"
   },
   {
-    "img": "assets/food2.jpeg",
-    "name": "Fruit Salad"
+    "img": "assets/garage2.jpg",
+    "name": "Gashaw Automobile"
   },
   {
-    "img": "assets/food3.jpeg",
-    "name": "Hamburger"
+    "img": "assets/garage1.jpeg",
+    "name": "Nat Auto"
   },
   {
-    "img": "assets/food4.jpeg",
-    "name": "Fruit Salad"
+    "img": "assets/garage4.jpg",
+    "name": "Adnew Garage"
   },
   {
-    "img": "assets/food5.jpeg",
-    "name": "Hamburger"
+    "img": "assets/garage5.jpg",
+    "name": "Garage Here"
   },
   {
-    "img": "assets/food6.jpeg",
-    "name": "Steak"
+    "img": "assets/garage6.jpg",
+    "name": "Garage Next to Here"
   },
   {
-    "img": "assets/food7.jpeg",
-    "name": "Pizza"
+    "img": "assets/garage7.jpg",
+    "name": "Automobil Barato"
   },
   {
-    "img": "assets/food8.jpeg",
-    "name": "Asparagus"
+    "img": "assets/garage8.jpg",
+    "name": "Nice Garage"
   },
   {
-    "img": "assets/food9.jpeg",
-    "name": "Salad"
+    "img": "assets/garage9.jpeg",
+    "name": "Abebe Tyres"
   },
   {
-    "img": "assets/food10.jpeg",
-    "name": "Pizza"
+    "img": "assets/garage10.jpg",
+    "name": "Your Garage"
   },
-  {
-    "img": "assets/food11.jpeg",
-    "name": "Pizza"
-  },
-  {
-    "img": "assets/food12.jpg",
-    "name": "Salad"
-  },
+
 ];
