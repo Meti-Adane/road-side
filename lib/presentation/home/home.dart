@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:road_side/presentation/core/grid_service.dart';
 import '../../util/foods.dart';
 import '../core/slider_item.dart';
 
@@ -65,7 +66,7 @@ class _HomeState extends State<Home> {
                     isFav: false,
                     name: food['name'],
                     rating: 5.0,
-                    raters: 23,
+                    review_count: 23,
                   );
                 },
               ).toList(),
@@ -73,7 +74,29 @@ class _HomeState extends State<Home> {
               autoPlay: true,
               aspectRatio: 1.0,
               enlargeCenterPage: true,
-            ),)
+            ),),
+            SizedBox(height: 20.0),
+
+            GridView.builder(
+                shrinkWrap: true,
+                primary: false,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: MediaQuery.of(context).size.width /
+                      (MediaQuery.of(context).size.height / 1.25),
+                ),
+                itemCount: foods == null ? 0 : foods.length,
+                itemBuilder: (BuildContext context, int index){
+                  Map food = foods[index];
+
+                  return GridService(
+                      name: food['name'],
+                      img: food['img'],
+                      isFav: false,
+                      rating: 5.0,
+                      review_count: 67);
+            })
           ],
         ),
       ),
