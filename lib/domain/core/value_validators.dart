@@ -24,6 +24,13 @@ Either<ValueFailure<String>, String> validatePassword(String input) {
   }
 }
 
+Either<ValueFailure<String>, String> validateConfirmPassword(String original, String input){
+  if( original == input ){
+    return right(input);
+  }
+  return left(ValueFailure.passwordsMustMatch(failedValue: input));
+}
+
 bool _shortLength(String input) {
   if (input.length >= 6) {
     return true;
