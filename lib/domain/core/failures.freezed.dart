@@ -39,6 +39,12 @@ class _$ValueFailureTearOff {
       failedValue: failedValue,
     );
   }
+
+  InvalidConfirmPassword<T> passwordsMustMatch<T>({required T failedValue}) {
+    return InvalidConfirmPassword<T>(
+      failedValue: failedValue,
+    );
+  }
 }
 
 /// @nodoc
@@ -54,6 +60,7 @@ mixin _$ValueFailure<T> {
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) mustContainCapital,
     required TResult Function(T failedValue) mustContainDigit,
+    required TResult Function(T failedValue) passwordsMustMatch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,6 +69,7 @@ mixin _$ValueFailure<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? mustContainCapital,
     TResult Function(T failedValue)? mustContainDigit,
+    TResult Function(T failedValue)? passwordsMustMatch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -71,6 +79,8 @@ mixin _$ValueFailure<T> {
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(MustContainCapital<T> value) mustContainCapital,
     required TResult Function(MustContainDigit<T> value) mustContainDigit,
+    required TResult Function(InvalidConfirmPassword<T> value)
+        passwordsMustMatch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -79,6 +89,7 @@ mixin _$ValueFailure<T> {
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(MustContainCapital<T> value)? mustContainCapital,
     TResult Function(MustContainDigit<T> value)? mustContainDigit,
+    TResult Function(InvalidConfirmPassword<T> value)? passwordsMustMatch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -190,6 +201,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) mustContainCapital,
     required TResult Function(T failedValue) mustContainDigit,
+    required TResult Function(T failedValue) passwordsMustMatch,
   }) {
     return invalidEmail(failedValue);
   }
@@ -201,6 +213,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? mustContainCapital,
     TResult Function(T failedValue)? mustContainDigit,
+    TResult Function(T failedValue)? passwordsMustMatch,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -216,6 +229,8 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(MustContainCapital<T> value) mustContainCapital,
     required TResult Function(MustContainDigit<T> value) mustContainDigit,
+    required TResult Function(InvalidConfirmPassword<T> value)
+        passwordsMustMatch,
   }) {
     return invalidEmail(this);
   }
@@ -227,6 +242,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(MustContainCapital<T> value)? mustContainCapital,
     TResult Function(MustContainDigit<T> value)? mustContainDigit,
+    TResult Function(InvalidConfirmPassword<T> value)? passwordsMustMatch,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -319,6 +335,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) mustContainCapital,
     required TResult Function(T failedValue) mustContainDigit,
+    required TResult Function(T failedValue) passwordsMustMatch,
   }) {
     return shortPassword(failedValue);
   }
@@ -330,6 +347,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? mustContainCapital,
     TResult Function(T failedValue)? mustContainDigit,
+    TResult Function(T failedValue)? passwordsMustMatch,
     required TResult orElse(),
   }) {
     if (shortPassword != null) {
@@ -345,6 +363,8 @@ class _$ShortPassword<T> implements ShortPassword<T> {
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(MustContainCapital<T> value) mustContainCapital,
     required TResult Function(MustContainDigit<T> value) mustContainDigit,
+    required TResult Function(InvalidConfirmPassword<T> value)
+        passwordsMustMatch,
   }) {
     return shortPassword(this);
   }
@@ -356,6 +376,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(MustContainCapital<T> value)? mustContainCapital,
     TResult Function(MustContainDigit<T> value)? mustContainDigit,
+    TResult Function(InvalidConfirmPassword<T> value)? passwordsMustMatch,
     required TResult orElse(),
   }) {
     if (shortPassword != null) {
@@ -449,6 +470,7 @@ class _$MustContainCapital<T> implements MustContainCapital<T> {
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) mustContainCapital,
     required TResult Function(T failedValue) mustContainDigit,
+    required TResult Function(T failedValue) passwordsMustMatch,
   }) {
     return mustContainCapital(failedValue);
   }
@@ -460,6 +482,7 @@ class _$MustContainCapital<T> implements MustContainCapital<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? mustContainCapital,
     TResult Function(T failedValue)? mustContainDigit,
+    TResult Function(T failedValue)? passwordsMustMatch,
     required TResult orElse(),
   }) {
     if (mustContainCapital != null) {
@@ -475,6 +498,8 @@ class _$MustContainCapital<T> implements MustContainCapital<T> {
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(MustContainCapital<T> value) mustContainCapital,
     required TResult Function(MustContainDigit<T> value) mustContainDigit,
+    required TResult Function(InvalidConfirmPassword<T> value)
+        passwordsMustMatch,
   }) {
     return mustContainCapital(this);
   }
@@ -486,6 +511,7 @@ class _$MustContainCapital<T> implements MustContainCapital<T> {
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(MustContainCapital<T> value)? mustContainCapital,
     TResult Function(MustContainDigit<T> value)? mustContainDigit,
+    TResult Function(InvalidConfirmPassword<T> value)? passwordsMustMatch,
     required TResult orElse(),
   }) {
     if (mustContainCapital != null) {
@@ -579,6 +605,7 @@ class _$MustContainDigit<T> implements MustContainDigit<T> {
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) mustContainCapital,
     required TResult Function(T failedValue) mustContainDigit,
+    required TResult Function(T failedValue) passwordsMustMatch,
   }) {
     return mustContainDigit(failedValue);
   }
@@ -590,6 +617,7 @@ class _$MustContainDigit<T> implements MustContainDigit<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? mustContainCapital,
     TResult Function(T failedValue)? mustContainDigit,
+    TResult Function(T failedValue)? passwordsMustMatch,
     required TResult orElse(),
   }) {
     if (mustContainDigit != null) {
@@ -605,6 +633,8 @@ class _$MustContainDigit<T> implements MustContainDigit<T> {
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(MustContainCapital<T> value) mustContainCapital,
     required TResult Function(MustContainDigit<T> value) mustContainDigit,
+    required TResult Function(InvalidConfirmPassword<T> value)
+        passwordsMustMatch,
   }) {
     return mustContainDigit(this);
   }
@@ -616,6 +646,7 @@ class _$MustContainDigit<T> implements MustContainDigit<T> {
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(MustContainCapital<T> value)? mustContainCapital,
     TResult Function(MustContainDigit<T> value)? mustContainDigit,
+    TResult Function(InvalidConfirmPassword<T> value)? passwordsMustMatch,
     required TResult orElse(),
   }) {
     if (mustContainDigit != null) {
@@ -634,5 +665,142 @@ abstract class MustContainDigit<T> implements ValueFailure<T> {
   @override
   @JsonKey(ignore: true)
   $MustContainDigitCopyWith<T, MustContainDigit<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $InvalidConfirmPasswordCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory $InvalidConfirmPasswordCopyWith(InvalidConfirmPassword<T> value,
+          $Res Function(InvalidConfirmPassword<T>) then) =
+      _$InvalidConfirmPasswordCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class _$InvalidConfirmPasswordCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements $InvalidConfirmPasswordCopyWith<T, $Res> {
+  _$InvalidConfirmPasswordCopyWithImpl(InvalidConfirmPassword<T> _value,
+      $Res Function(InvalidConfirmPassword<T>) _then)
+      : super(_value, (v) => _then(v as InvalidConfirmPassword<T>));
+
+  @override
+  InvalidConfirmPassword<T> get _value =>
+      super._value as InvalidConfirmPassword<T>;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+  }) {
+    return _then(InvalidConfirmPassword<T>(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InvalidConfirmPassword<T> implements InvalidConfirmPassword<T> {
+  const _$InvalidConfirmPassword({required this.failedValue});
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString() {
+    return 'ValueFailure<$T>.passwordsMustMatch(failedValue: $failedValue)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is InvalidConfirmPassword<T> &&
+            (identical(other.failedValue, failedValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.failedValue, failedValue)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
+
+  @JsonKey(ignore: true)
+  @override
+  $InvalidConfirmPasswordCopyWith<T, InvalidConfirmPassword<T>> get copyWith =>
+      _$InvalidConfirmPasswordCopyWithImpl<T, InvalidConfirmPassword<T>>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue) invalidEmail,
+    required TResult Function(T failedValue) shortPassword,
+    required TResult Function(T failedValue) mustContainCapital,
+    required TResult Function(T failedValue) mustContainDigit,
+    required TResult Function(T failedValue) passwordsMustMatch,
+  }) {
+    return passwordsMustMatch(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? mustContainCapital,
+    TResult Function(T failedValue)? mustContainDigit,
+    TResult Function(T failedValue)? passwordsMustMatch,
+    required TResult orElse(),
+  }) {
+    if (passwordsMustMatch != null) {
+      return passwordsMustMatch(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InvalidEmail<T> value) invalidEmail,
+    required TResult Function(ShortPassword<T> value) shortPassword,
+    required TResult Function(MustContainCapital<T> value) mustContainCapital,
+    required TResult Function(MustContainDigit<T> value) mustContainDigit,
+    required TResult Function(InvalidConfirmPassword<T> value)
+        passwordsMustMatch,
+  }) {
+    return passwordsMustMatch(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortPassword<T> value)? shortPassword,
+    TResult Function(MustContainCapital<T> value)? mustContainCapital,
+    TResult Function(MustContainDigit<T> value)? mustContainDigit,
+    TResult Function(InvalidConfirmPassword<T> value)? passwordsMustMatch,
+    required TResult orElse(),
+  }) {
+    if (passwordsMustMatch != null) {
+      return passwordsMustMatch(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvalidConfirmPassword<T> implements ValueFailure<T> {
+  const factory InvalidConfirmPassword({required T failedValue}) =
+      _$InvalidConfirmPassword<T>;
+
+  @override
+  T get failedValue => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $InvalidConfirmPasswordCopyWith<T, InvalidConfirmPassword<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

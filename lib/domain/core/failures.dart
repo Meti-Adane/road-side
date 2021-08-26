@@ -19,4 +19,8 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
   const factory ValueFailure.mustContainDigit({
     required T failedValue,
   }) = MustContainDigit<T>;
+
+  const factory ValueFailure.passwordsMustMatch({
+    required T failedValue,
+  }) = InvalidConfirmPassword<T>;
 }
