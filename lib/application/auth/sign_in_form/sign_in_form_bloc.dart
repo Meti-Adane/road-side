@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
+import 'package:injectable/injectable.dart';
 import 'package:road_side/domain/auth/i_auth_facade.dart';
 import 'package:road_side/domain/auth/value_objects.dart';
 import 'package:road_side/domain/auth/auth_failure.dart';
@@ -14,6 +14,7 @@ part 'sign_in_form_state.dart';
 
 part 'sign_in_form_bloc.freezed.dart';
 
+@injectable
 class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   final IAuthFacade _authFacade;
 
@@ -37,11 +38,6 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         yield state.copyWith(
           password: Password(e.passwordStr),
           authFailureOrSuccessOption: none(),
-        );
-      },
-      registerWithEmailAndPasswordPressed: (e) async* {
-        yield* _performActionOnAuthFacadeWithEmailAndPassword(
-          _authFacade.registerWithEmailAndPassword
         );
       },
       signInWithEmailAndPasswordPressed: (e) async* {
