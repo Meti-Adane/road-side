@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:road_side/domain/auth/auth_failure.dart';
 
 import 'package:road_side/domain/auth/token.dart';
@@ -12,6 +13,7 @@ import 'package:road_side/domain/auth/value_objects.dart';
 
 import 'mapper.dart';
 
+@LazySingleton(as: IAuthFacade) //TODO - Test injectable
 class ApiAuthFacade implements IAuthFacade{
   final http.Client _client;
   String baseUrl;
