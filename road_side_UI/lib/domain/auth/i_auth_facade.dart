@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:road_side/domain/auth/auth_failure.dart';
 import 'package:road_side/domain/auth/credential.dart';
 import 'package:road_side/domain/auth/token.dart';

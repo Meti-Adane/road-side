@@ -16,9 +16,9 @@ import 'mapper.dart';
 @LazySingleton(as: IAuthFacade) //TODO - Test injectable
 class ApiAuthFacade implements IAuthFacade{
   final http.Client _client;
-  String baseUrl;
+  final String _baseUrl;
 
-  ApiAuthFacade(this.baseUrl, this._client);
+  ApiAuthFacade(this._baseUrl, this._client);
 
 
 
@@ -30,19 +30,19 @@ class ApiAuthFacade implements IAuthFacade{
 
   @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword(Credential credential) async {
-    var endpoint = baseUrl + '/auth/register';
+    var endpoint = _baseUrl + '/auth/register';
     return await _postCredential(endpoint, credential);
   }
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword({required EmailAddress emailAddress, required Password password}) async {
-    var endpoint = baseUrl + '/auth/signin';
+    var endpoint = _baseUrl + '/auth/signin';
     return await _postEmailAndPasswordCredential(endpoint, emailAddress: emailAddress, password: password);
   }
 
   @override
   Future<void> signOut(Token token) async{
-    var url = baseUrl + '/auth/signout';
+    var url = _baseUrl + '/auth/signout';
     var headers = {
       "Content-type": "application/json",
       "Authorization": token.value
