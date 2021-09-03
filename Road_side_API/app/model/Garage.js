@@ -20,13 +20,26 @@ const contact_schema = mongoose.Schema(
 const garage_schema = mongoose.Schema(
     {
         name: {
+            type:String,
+        },
+        username:{
+            type:String,
+            set:toLower,
+            unique:true,
 
         },
+        password:{
+            type: String,
+            required:true,
+            min:6,
+            
+        },
         description : {
+            type:Text,
 
         },
         location:{
-
+            type:String,
         },
         contact:{
             type : [contact_schema],
@@ -44,9 +57,12 @@ const garage_schema = mongoose.Schema(
             type:Array,
         },
 
-        ongoing_services : {  // only order ids are stored for ongoing services
-            type : Array,
-        }
+        ongoing_services : [ 
+            { // only order ids are stored for ongoing services
+                type : mongoose.Schema.Types.ObjectId,
+                ref: 'Order',
+            }
+        ]
 
     }
 )
