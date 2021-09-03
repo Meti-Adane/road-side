@@ -16,7 +16,29 @@ export const addGarageToLocation = (req, res) => {
         
     } catch (error) {
         console.log(error)
-        res.status(409).send("CONFLICT garage already added to location")
+        res.status(409).send({
+            message: error.message || "CONFLICT garage already added to location"
+        }).end();
     }
 }
+
+export const getNearByGarages = (req, res) => { //send partial data
+    const locationName = req.body.location_name
+
+    if (!locationName) res.status(400).send("BAD REQUEST all inputs are required").end()
+
+    const query = { "name": area }
+    Location.find(query)
+    .then(data => {
+      res.status(200).send(data).end();
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || " INTERNAL ERROR Some error occurred while retrieving."
+      }).end();
+    });
+}
+
+
 
