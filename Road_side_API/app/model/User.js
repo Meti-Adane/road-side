@@ -1,12 +1,31 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-const 
+const Role= {
+    User, 
+    Admin
+}
 const userSchema = mongoose.Schema(
     {
         name:{
             type : String,
+            required:true,            
+        },
+        username:{
+            type:String,
+            set:toLower,
+            unique:true,
+        },
+        password:{
+            type: String,
             required:true,
-            
+            min:6,            
+        },
+        role:{
+            type:Role,
+            default:Role.User
+        },
+        profile_picture:{
+            type: String            
         },
         phoneNumber:{
             type : Number,
@@ -18,7 +37,6 @@ const userSchema = mongoose.Schema(
             type :String,
             set : toLower,
             unique : true,
-
         }, 
         order_history :{
             type:Array,
