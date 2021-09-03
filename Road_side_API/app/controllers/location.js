@@ -40,5 +40,10 @@ export const getNearByGarages = (req, res) => { //send partial data
     });
 }
 
-
-
+export const getAllLocations = (req, res) => {
+    Location.find({}, 'available_garages', function (err, garages) {
+        if (err) res.status(500).send('INTERNAL SERVER ERROR || Soemthign went wrong whilr retriving ');
+        res.status(201).send("OK").end()
+        
+      });
+}
