@@ -1,38 +1,40 @@
-import mongoose, { Schema } from 'mongoose'
-import User from './User.js'
-import Garage from './Garage.js'
-import Service from './Service.js'
-const orderSchema = mongoose.Schema(
+import mongoose, { Schema } from 'mongoose';
+
+const order_schema =  mongoose.Schema(
     {
-        user_id = {
-            type: Schema.Types.ObjectId,
-            ref: User,
-            required
+        customer_id:{
+            type : mongoose.Schema.Types.ObjectId,
+            ref:'User',
+            required:true
+            
         },
-        garage_id = {
-            type: Schema.Types.ObjectId,
-            ref: Garage,
-            required
+        garage_id: {
+            type : mongoose.Schema.Types.ObjectId,
+            ref:'Garage',
+            required:true
+
         },
-        status = {
-            type: String,
-            default: "incomplete"
+        service_id:{
+            type : mongoose.Schema.Types.ObjectId,
+            ref:'Service',
+            required:true
+
         },
-        issued_date = {
-            type: Date,
-            default: Date.now()
+        issued_date:{
+            default: Date.now,
+            required:true
         },
-        completed_date = {
+        completed_at:{
             type: Date
-        },
-        service_type = {
-            type: Schema.Types.ObjectId,
-            ref: Service,
-            default: "quick_fix"
         }
     }
-
 )
-const Order = mongoose.Model('order', orderSchema);
+
+userSchema.method("toJSON", ()=>{
+    const { __v, _id, ...object } = this.toObject();
+    object.id = _id;
+    return object;
+})
+
+const Order = mongoose.Model("order", serviceSchema);
 export default Order;
-    
