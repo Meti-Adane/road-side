@@ -13,4 +13,19 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
   MainScreenBloc({required this.garageRepository})
       : super(LoadingMainScreenState());
 
+  @override
+  Stream<MainScreenState> mapEventToState(
+    MainScreenEvent event,
+  ) async* {
+    if (event is AddGarageToFavoritesEvent) {
+      yield* _mapAddGarageToFavoritesEventToState(event);
+    }
+  }
 
+  Stream<MainScreenState> _mapAddGarageToFavoritesEventToState(
+      AddGarageToFavoritesEvent event) async* {
+    final String garageId = event.GarageId;
+    final garage = await garageRepository.getGarage(garageId);
+    //Todo Implementation toggle favorite garage
+  }
+}
