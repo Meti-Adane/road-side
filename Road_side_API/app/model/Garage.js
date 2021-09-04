@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
 // schema for contact of garage
 const contact_schema = mongoose.Schema(
@@ -6,7 +6,7 @@ const contact_schema = mongoose.Schema(
         email:{
             type:String,
             required:true,
-            set : toLower,
+            lowercase:true,
             unique: true,
         },
         phone_number:{
@@ -24,7 +24,7 @@ const garage_schema = mongoose.Schema(
         },
         username:{
             type:String,
-            set:toLower,
+            lowercase:true,
             unique:true,
 
         },
@@ -35,7 +35,7 @@ const garage_schema = mongoose.Schema(
             
         },
         description : {
-            type:Text,
+            type:String,
 
         },
         location:{
@@ -53,10 +53,13 @@ const garage_schema = mongoose.Schema(
             type:String,
             required:true,
         },
-        services:{
-            type:Array,
-        },
-
+        services:[
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                required:true
+            }
+        ],
+            
         ongoing_services : [ 
             { // only order ids are stored for ongoing services
                 type : mongoose.Schema.Types.ObjectId,
@@ -64,6 +67,20 @@ const garage_schema = mongoose.Schema(
             }
         ]
 
+    },
+    {
+        toObject: {
+          transform: function (doc, ret) {
+            ret.id = ret._id
+            delete ret._id;
+          }
+        },
+        toJSON: {
+          transform: function (doc, ret) {
+            ret.id = ret._id
+            delete ret._id;
+          }
+        }
     }
 )
 
