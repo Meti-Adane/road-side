@@ -11,7 +11,6 @@ Future<void> main() async {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     title: 'Road Side',
-    // home: SignInPage(),
-    home: SettingsUI(),
+    home: MainScreen(),
   ));
 }

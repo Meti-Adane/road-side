@@ -1,8 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:road_side/presentation/home/home.dart';
 import 'package:road_side/presentation/order_page/order_page.dart';
+import 'package:road_side/presentation/profile/profile_screen.dart';
+import 'package:road_side/presentation/setting/setting_screen.dart';
 import 'package:road_side/util/const.dart';
+import 'package:road_side/presentation/routes/router.gr.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -64,28 +68,37 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                 ),
               ),
-              ListTile(
-                leading: Icon(Icons.message),
-                title: Text('Messages'),
-                onTap: () {
-                  //TODO - Update the state of the app
-                  Navigator.pop(context);
-                },
-              ),
+              // ListTile(
+              //   leading: Icon(Icons.message),
+              //   title: Text('Messages'),
+              //   onTap: () {
+              //     Navigator.push(
+              //       context,
+              //       new MaterialPageRoute(builder: (context) => new SettingsPage()),
+              //     );
+              //   }
+              //
+              // ),
               ListTile(
                 leading: Icon(Icons.account_circle),
                 title: Text('Profile'),
                 onTap: () {
-                  //TODO - Update the state of the app
-                  Navigator.pop(context);
-                },
+                  Navigator.push(
+                    context,
+                    new MaterialPageRoute(builder: (context) => new EditProfilePage()),
+                  );
+                }
+                //=> AutoRouter.of(context).replace(const EditProfilePageRoute())
+
               ),
               ListTile(
                 leading: Icon(Icons.settings),
                 title: Text('Settings'),
                 onTap: () {
-                  //TODO - Update the state of the app
-                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    new MaterialPageRoute(builder: (context) => new SettingsPage()),
+                  );
                 },
               ),
             ],
