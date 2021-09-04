@@ -3,7 +3,7 @@ import { addGarageToLocation, getAllLocations, getNearByGarages } from '../contr
 var router = Router();
 
 router.get("/", getAllLocations);
-router.get("/register", addGarageToLocation);
+// router.get("/register", addGarageToLocation);
 router.get("/:id", getNearByGarages);
 
 export default router;
