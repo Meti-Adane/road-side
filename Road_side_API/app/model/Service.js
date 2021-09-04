@@ -1,16 +1,25 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 
 const serviceSchema = mongoose.Schema(
     {
         name: String,
+    }, 
+    {
+        toObject: {
+          transform: function (doc, ret) {
+            ret.id = ret._id
+            delete ret._id;
+          }
+        },
+        toJSON: {
+          transform: function (doc, ret) {
+            ret.id = ret._id
+            delete ret._id;
+          }
+        }
     }
 )
 
-userSchema.method("toJSON", ()=>{
-    const { __v, _id, ...object } = this.toObject();
-    object.id = _id;
-    return object;
-})
 
-const Service = mongoose.Model("service", serviceSchema);
+const Service = mongoose.model("service", serviceSchema);
 export default Service;
