@@ -1,7 +1,22 @@
 List<Map> foods = [
   {
     "img": "assets/garage3.jpg",
-    "name": "MZN Automobile"
+    "name": "MZN Automobile",
+    "location":"Mexico",
+    "contact":{
+      "+25245534543"
+    },
+    "working_hours":{
+      "12:00 - 11:00"
+    },
+    "rating": 5,
+    "reviews":{
+      "user":"review1",
+    },
+    "available_services":{
+      "Tow Truck",
+      "Monthly Service"
+    }
   },
   {
     "img": "assets/garage2.jpg",

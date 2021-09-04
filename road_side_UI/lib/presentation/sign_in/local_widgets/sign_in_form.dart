@@ -35,7 +35,7 @@ class SignInForm extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 8.0),
                   child: Text(
-                    "Sign Up",
+                    "Sign In",
                     style: TextStyle(
                       color: Theme.of(context).secondaryHeaderColor,
                       fontSize: 25.0,
@@ -61,15 +61,15 @@ class SignInForm extends StatelessWidget {
                 const SizedBox(
                   height: 20.0,
                 ),
-                TextFormField(
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.person_outline),
-                    hintText: "Full Name",
-                  ),
-                ),
-                const SizedBox(
-                  height: 20.0,
-                ),
+                // TextFormField(
+                //   decoration: InputDecoration(
+                //     prefixIcon: Icon(Icons.person_outline),
+                //     hintText: "Full Name",
+                //   ),
+                // ),
+                // const SizedBox(
+                //   height: 20.0,
+                // ),
                 TextFormField(
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.lock_outline),
@@ -93,13 +93,13 @@ class SignInForm extends StatelessWidget {
                 const SizedBox(
                   height: 20.0,
                 ),
-                TextFormField(
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.lock_open),
-                    hintText: "Confirm Password",
-                  ),
-                  obscureText: true,
-                ),
+                // TextFormField(
+                //   decoration: InputDecoration(
+                //     prefixIcon: Icon(Icons.lock_open),
+                //     hintText: "Confirm Password",
+                //   ),
+                //   obscureText: true,
+                // ),
                 const SizedBox(
                   height: 20.0,
                 ),

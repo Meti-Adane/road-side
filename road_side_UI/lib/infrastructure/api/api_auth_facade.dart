@@ -16,9 +16,10 @@ import 'mapper.dart';
 @LazySingleton(as: IAuthFacade) //TODO - Test injectable
 class ApiAuthFacade implements IAuthFacade{
   final http.Client _client;
-  final String _baseUrl;
 
-  ApiAuthFacade(this._baseUrl, this._client);
+  final String _baseUrl = "api";
+
+  ApiAuthFacade(this._client);
 
 
 
