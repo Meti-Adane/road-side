@@ -1,18 +1,27 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose from 'mongoose';
 
-const Role= {
-    User, 
-    Admin
+const rating_Schema = {
+    garage_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Garage'
+    },
+    rating: {
+        type: Number
+    }
 }
 const userSchema = mongoose.Schema(
     {
-        name:{
+        first_name:{
+            type : String,
+            required:true,            
+        },
+        last_name:{
             type : String,
             required:true,            
         },
         username:{
             type:String,
-            set:toLower,
+            lowercase:true,
             unique:true,
         },
         password:{
@@ -21,48 +30,58 @@ const userSchema = mongoose.Schema(
             min:6,            
         },
         role:{
-            type:Role,
-            default:Role.User
+            type:String,
+            default:"User"
         },
         profile_picture:{
             type: String            
         },
         phoneNumber:{
-            type : Number,
+            type : String,
             required : true,
             unique : true,
             min:10,
         },
         email:{
             type :String,
-            set : toLower,
+            lowercase: true,
             unique : true,
         }, 
         order_history :{
             type:Array,
-            select: false,
         },
         
-        on_going_services :{ // can be retrived from order_history
+        ongoing_services :{ // can be retrived from order_history
             type: Array,
 
         },
         favorites :{
-            type:Array,
+            type : [mongoose.Schema.Types.ObjectId],
+            ref: 'Garage',
 
         },
         rated_garages : {
-            type:Array,
+            type:[rating_Schema],
         }
 
+    }, 
+    {
+        toObject: {
+          transform: function (doc, ret) {
+            ret.id = ret._id
+            delete ret._id;
+          }
+        },
+        toJSON: {
+          transform: function (doc, ret) {
+            ret.id = ret._id
+            delete ret._id;
+          }
+        }
     }
 );
 
-userSchema.method("toJSON", ()=>{
-    const { __v, _id, ...object } = this.toObject();
-    object.id = _id;
-    return object;
-})
 
-const User = mongoose.Model("user", userSchema);
+
+const User = mongoose.model("user", userSchema);
 export default User;
