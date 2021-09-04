@@ -1,8 +1,8 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
 const order_schema =  mongoose.Schema(
     {
-        customer_id:{
+        user_id:{
             type : mongoose.Schema.Types.ObjectId,
             ref:'User',
             required:true
@@ -18,23 +18,42 @@ const order_schema =  mongoose.Schema(
             type : mongoose.Schema.Types.ObjectId,
             ref:'Service',
             required:true
-
+        },
+        description: {
+            type: String
         },
         issued_date:{
+            type:Date,
             default: Date.now,
             required:true
         },
         completed_at:{
             type: Date
+        }, 
+        is_pending: {
+            type: Boolean,
+            default: false
+        },
+        is_placed: {
+            type: Boolean,
+            default: false
+        }
+    }, 
+    {
+        toObject: {
+          transform: function (doc, ret) {
+            ret.id = ret._id
+            delete ret._id;
+          }
+        },
+        toJSON: {
+          transform: function (doc, ret) {
+            ret.id = ret._id
+            delete ret._id;
+          }
         }
     }
 )
 
-userSchema.method("toJSON", ()=>{
-    const { __v, _id, ...object } = this.toObject();
-    object.id = _id;
-    return object;
-})
-
-const Order = mongoose.Model("order", serviceSchema);
+const Order = mongoose.model("order", order_schema);
 export default Order;
