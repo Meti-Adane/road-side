@@ -25,7 +25,31 @@ export const getAllGarages = (req, res) => {
     });
 };
 
-export const getGarageById = (req, res) => {};
+export const getGarageById = (req, res) => {
+  const id = req.params.id;
+
+  if (!id)
+    res.status(400).send({ messgage: "BAD REQUEST missing inputs" }).end();
+
+  Garage.findById(id)
+    .then((data) => {
+      if (!data)
+        res
+          .status(404)
+          .send({ messgage: "NOT FOUND no garage with this id" })
+          .end();
+      res.status(200).send({ messgage: "OK", garage: data });
+    })
+    .catch((error) => {
+      if (error.name === "CastError") {
+        return res
+          .status(400)
+          .send({ message: "BAD REQUEST INVLAID ID TYPE " })
+          .end();
+      }
+      return res.status(500).send({ message: "INTERNAL SERVER ERROR" }).end();
+    });
+};
 
 export const addNewGarage = (req, res) => {
   let garage = req.body;
