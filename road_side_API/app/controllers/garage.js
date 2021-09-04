@@ -34,7 +34,7 @@ export const getGarageById = (req, res) => {
   Garage.findById(id)
     .then((data) => {
       if (!data)
-        res
+        return res
           .status(404)
           .send({ messgage: "NOT FOUND no garage with this id" })
           .end();
@@ -46,8 +46,9 @@ export const getGarageById = (req, res) => {
           .status(400)
           .send({ message: "BAD REQUEST INVLAID ID TYPE " })
           .end();
+      } else {
+        return res.status(500).send({ message: "INTERNAL SERVER ERROR" }).end();
       }
-      return res.status(500).send({ message: "INTERNAL SERVER ERROR" }).end();
     });
 };
 
@@ -119,4 +120,28 @@ export const addNewGarage = (req, res) => {
     });
 };
 
-export const deleteGarage = (req, res) => {};
+export const deleteGarage = (req, res) => {
+  const id = req.params.id;
+
+  if (!id)
+    res.status(400).send({ messgage: "BAD REQUEST missing inputs" }).end();
+
+  Garage.findByIdAndRemove(id)
+    .then((data) => {
+      if (!data)
+        return res
+          .status(404)
+          .send({ messgage: "NOT FOUND no garage with this id" })
+          .end();
+      return res.status(204).send({ messgage: "NO CONTENT deleted" });
+    })
+    .catch((error) => {
+      if (error.name === "CastError") {
+        return res
+          .status(400)
+          .send({ message: "BAD REQUEST invalid id type" })
+          .end();
+      }
+      return res.status(500).send({ message: "INTERNAL SERVER ERROR" }).end();
+    });
+};
