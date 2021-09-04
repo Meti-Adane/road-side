@@ -1,28 +1,36 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 
 const locationSchema = mongoose.Schema(
     {
         name:{
             type:String,
-            set: toLower,
-            unique,
-            required
+            lowercase: true,
+            unique:true,
+            required:true
         },
         garages_available: [
             {
-                type: mongoose.Schema.Types.ObjectId, 
-                ref: 'Garage',
-                unique
+                type: [mongoose.Schema.Types.ObjectId], 
+                ref: 'Garage'
             }
         ]
+    },
+    {
+        toObject: {
+          transform: function (doc, ret) {
+            ret.id = ret._id
+            delete ret._id;
+          }
+        },
+        toJSON: {
+          transform: function (doc, ret) {
+            ret.id = ret._id
+            delete ret._id;
+          }
+        }
     }
 )
 
-locationSchema.method("toJSON", ()=>{
-    const { __v, _id, ...object } = this.toObject();
-    object.id = _id;
-    return object;
-})
 
-const Location = mongoose.Model("location", locationSchema);
+const Location = mongoose.model("location", locationSchema);
 export default Location;
