@@ -2,7 +2,28 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import Garage from "../model/Garage.js";
 
-export const getAllGarages = (req, res) => {};
+export const getAllGarages = (req, res) => {
+  Garage.find(
+    {},
+    "_id name description opening_hour closing_hour location services contact"
+  )
+    .then((data) => {
+      if (!data) {
+        res
+          .status(204)
+          .send({ messgage: "NO CONTENT no garges registered" })
+          .end();
+      } else {
+        res.status(200).send({ messgage: "OK", garages: data });
+      }
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .send({ messgage: err || "INTERNAL SERVER ERROR" })
+        .end();
+    });
+};
 
 export const getGarageById = (req, res) => {};
 
@@ -44,7 +65,6 @@ export const addNewGarage = (req, res) => {
                       expiresIn: "2h",
                     }
                   );
-                  console.log(token, "TOKEN");
                   // save user token
                   garage = data;
                   garage.token = token;
