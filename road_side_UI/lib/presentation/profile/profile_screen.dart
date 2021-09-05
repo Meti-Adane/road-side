@@ -114,37 +114,30 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 height: 35,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  OutlinedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(horizontal: 50),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: IconButton(
+                      iconSize: 40,
+                      icon: Icon(
+                        Icons.cancel_outlined,
+                      ),
+                      onPressed: () {},
+                      tooltip: "Notifications",
                     ),
-                    onPressed: () {},
-                    child: Text("CANCEL",
-                        style: TextStyle(
-                            fontSize: 14,
-                            letterSpacing: 2.2,
-                            color: Colors.black)),
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.blue,
-                      padding: EdgeInsets.symmetric(horizontal: 50),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: IconButton(
+                      iconSize: 40,
+                      icon: Icon(
+                        Icons.save_outlined,
+                      ),
+                      onPressed: () {},
+                      tooltip: "Notifications",
                     ),
-                    child: Text(
-                      "SAVE",
-                      style: TextStyle(
-                          fontSize: 14,
-                          letterSpacing: 2.2,
-                          color: Colors.white),
-                    ),
-                  )
+                  ),
                 ],
               )
             ],
