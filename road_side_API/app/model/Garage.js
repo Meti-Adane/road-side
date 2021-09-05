@@ -6,7 +6,6 @@ const contact_schema = mongoose.Schema({
     type: String,
     required: true,
     lowercase: true,
-    unique: true,
   },
   phone_number: {
     type: Array,
