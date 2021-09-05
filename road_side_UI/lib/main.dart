@@ -8,11 +8,13 @@ import 'package:road_side/presentation/profile/profile_screen.dart';
 Future<void> main() async {
   configureInjection(Environment.prod);
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    title: 'Road Side',
-    // home: SignInPage(),
-    home: SettingsUI(),
-    // home: MainScreen(),
-  ));
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Road Side',
+      // home: SignInPage(),
+      home: SettingsUI(),
+      // home: MainScreen(),
+    ),
+  );
 }
