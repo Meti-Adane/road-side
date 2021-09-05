@@ -56,7 +56,7 @@ export const getGarageById = (req, res) => {
 export const addNewGarage = (req, res) => {
   let garage = req.body;
 
-  if (!(garage && Object.keys(garage).length >= 9)) {
+  if (!(garage && Object.keys(garage).length >= 8)) {
     return res
       .status(400)
       .send({ message: "BAD REQUEST missing inputs" })
@@ -72,8 +72,10 @@ export const addNewGarage = (req, res) => {
         res.status(409).send("Garage already exists").end();
       } else {
         //Encrypt password
+        let pin = Math.floor(1000 + Math.random() * 9000);
+        console.log(pin);
         bcrypt
-          .hash(garage.password, 10)
+          .hash(pin.toString(), 10)
           .then((data) => {
             garage.password = data;
             const newGarage = new Garage(garage);
@@ -94,11 +96,10 @@ export const addNewGarage = (req, res) => {
                             .send({ messgae: "NOT FOUND couldnt update" })
                             .end();
                         }
-                        return res.status(200).send({ message: "OK" }).end();
                       })
                       .catch((err) => {
                         return res
-                          .statu(500)
+                          .status(500)
                           .send({ messgae: err || "INTERNAL SERVER error" })
                           .end();
                       });
@@ -140,7 +141,7 @@ export const addNewGarage = (req, res) => {
     });
 };
 
-export const updateGarage = (req, res) => {
+export const updateGarage = async (req, res) => {
   if (!req.body) {
     return res
       .status(400)
@@ -149,12 +150,16 @@ export const updateGarage = (req, res) => {
       })
       .end();
   }
-
   const id = req.params.id;
-  const isLocationUPdated = req.body.location.length != 0;
+  const isLocationUPdated = req.body.location && req.body.location.length != 0;
   console.log(isLocationUPdated);
+  if (req.body.password) {
+    req.body.password = await bcrypt.hash(req.body.password, 10);
+    console.log(req.body.password, "req body ***********");
+  }
   Garage.findByIdAndUpdate(id, req.body)
     .then((data) => {
+      console.log("UPDATEDDDD");
       if (!data) {
         res
           .status(404)
