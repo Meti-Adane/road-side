@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import Garage from "../model/Garage.js";
+import Location from "../model/Location.js";
 
 export const getAllGarages = (req, res) => {
   Garage.find(
@@ -68,10 +69,7 @@ export const addNewGarage = (req, res) => {
   Garage.find(query)
     .then((data) => {
       if (data.length) {
-        res
-          .status(409)
-          .send({ message: "CONFLICT Garage already in registered" })
-          .end();
+        res.status(409).send("Garage already exists").end();
       } else {
         //Encrypt password
         bcrypt
@@ -83,6 +81,28 @@ export const addNewGarage = (req, res) => {
               .save()
               .then((data) => {
                 if (data) {
+                  const updateDocument = {
+                    $push: { garages_available: data._id },
+                  };
+                  garage.location.forEach((location) => {
+                    const query = { name: location };
+                    Location.updateOne(query, updateDocument)
+                      .then((data) => {
+                        if (!data) {
+                          return res
+                            .status(404)
+                            .send({ messgae: "NOT FOUND couldnt update" })
+                            .end();
+                        }
+                        return res.status(200).send({ message: "OK" }).end();
+                      })
+                      .catch((err) => {
+                        return res
+                          .statu(500)
+                          .send({ messgae: err || "INTERNAL SERVER error" })
+                          .end();
+                      });
+                  });
                   const token = jwt.sign(
                     { id: garage._id, user_name: garage.user_name },
                     process.env.TOKEN_KEY,
@@ -90,7 +110,7 @@ export const addNewGarage = (req, res) => {
                       expiresIn: "2h",
                     }
                   );
-                  // save user token
+                  // save garage token
                   garage = data;
                   garage.token = token;
                   res.status(201).send({ message: "CREATED", garage }).end();
@@ -120,6 +140,46 @@ export const addNewGarage = (req, res) => {
     });
 };
 
+export const updateGarage = (req, res) => {
+  if (!req.body) {
+    return res
+      .status(400)
+      .send({
+        message: "Data to update can not be empty!",
+      })
+      .end();
+  }
+
+  const id = req.params.id;
+  const isLocationUPdated = req.body.location.length != 0;
+  console.log(isLocationUPdated);
+  Garage.findByIdAndUpdate(id, req.body)
+    .then((data) => {
+      if (!data) {
+        res
+          .status(404)
+          .send({
+            message: `NOT FOUND`,
+          })
+          .end();
+      } else
+        res
+          .status(201)
+          .send({
+            message: "Garage updated",
+            garage: data,
+          })
+          .end();
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .send({
+          message: err || "Error updating Tutorial with id=" + id,
+        })
+        .end();
+    });
+};
 export const deleteGarage = (req, res) => {
   const id = req.params.id;
 
