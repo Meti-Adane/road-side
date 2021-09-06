@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Constants {
-  static String appName = "Restaurant App UI KIT";
+  static String appName = "Road Side";
+  static String settings = "Setting";
+  static String profilePage = "Profile";
 
   //Colors for theme
 //  Color(0xfffcfcff);
