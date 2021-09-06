@@ -5,12 +5,12 @@ import {
   cancelOrder,
   getIncomingOrder,
   placeOrder,
-} from "../controllers/order";
+} from "../controllers/order.js";
 const router = Router();
 
-router.put("/place_order", placeOrder);
+router.post("/place_order", placeOrder);
 router.delete("/cancel_order", cancelOrder);
 router.get("/order_request", getIncomingOrder);
 router.patch("/accept_order", acceptOrder);
 
-//0913430583
+export default router;
