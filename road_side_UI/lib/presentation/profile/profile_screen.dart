@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:road_side/presentation/setting/setting_screen.dart';
+import 'package:road_side/util/const.dart';
 
 class SettingsUI extends StatelessWidget {
   @override
@@ -23,24 +24,17 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Theme.of(context).accentColor,
+        title: Text(Constants.profilePage),
+        centerTitle: true,
         elevation: 1,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.blue,
+            color: Theme.of(context).buttonColor,
           ),
-          onPressed: () {},
+          onPressed: () => Navigator.pop(context),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.settings,
-              color: Colors.blue,
-            ),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: Container(
         padding: EdgeInsets.only(left: 16, top: 25, right: 16),
@@ -50,9 +44,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
           },
           child: ListView(
             children: [
-              Text(
-                "Edit Profile",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+              Center(
+                child: Text(
+                  "Username",
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                ),
               ),
               SizedBox(
                 height: 15,
@@ -65,8 +61,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       height: 130,
                       decoration: BoxDecoration(
                           border: Border.all(
-                              width: 4,
-                              color: Theme.of(context).scaffoldBackgroundColor),
+                              width: 4, color: Theme.of(context).accentColor),
                           boxShadow: [
                             BoxShadow(
                                 spreadRadius: 2,
@@ -91,9 +86,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             shape: BoxShape.circle,
                             border: Border.all(
                               width: 4,
-                              color: Theme.of(context).scaffoldBackgroundColor,
+                              color: Theme.of(context).accentColor,
                             ),
-                            color: Colors.blue,
+                            color: Theme.of(context).accentColor,
                           ),
                           child: Icon(
                             Icons.edit,
