@@ -69,10 +69,10 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             // Row(
             //   children: [
-                // Icon(
-                //   Icons.volume_up_outlined,
-                //   color: Theme.of(context).accentColor,
-                // ),
+            // Icon(
+            //   Icons.volume_up_outlined,
+            //   color: Theme.of(context).accentColor,
+            // ),
             //     SizedBox(
             //       width: 8,
             //     ),

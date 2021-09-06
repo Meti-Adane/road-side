@@ -61,8 +61,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       height: 130,
                       decoration: BoxDecoration(
                           border: Border.all(
-                              width: 4,
-                              color: Theme.of(context).accentColor),
+                              width: 4, color: Theme.of(context).accentColor),
                           boxShadow: [
                             BoxShadow(
                                 spreadRadius: 2,
@@ -110,37 +109,30 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 height: 35,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  OutlinedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(horizontal: 50),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: IconButton(
+                      iconSize: 40,
+                      icon: Icon(
+                        Icons.cancel_outlined,
+                      ),
+                      onPressed: () {},
+                      tooltip: "Notifications",
                     ),
-                    onPressed: () {},
-                    child: Text("Cancel",
-                        style: TextStyle(
-                            fontSize: 14,
-                            letterSpacing: 2.2,
-                            color: Colors.black)),
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      primary: Theme.of(context).accentColor,
-                      padding: EdgeInsets.symmetric(horizontal: 50),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: IconButton(
+                      iconSize: 40,
+                      icon: Icon(
+                        Icons.save_outlined,
+                      ),
+                      onPressed: () {},
+                      tooltip: "Notifications",
                     ),
-                    child: Text(
-                      "Save",
-                      style: TextStyle(
-                          fontSize: 14,
-                          letterSpacing: 2.2,
-                          color: Colors.white),
-                    ),
-                  )
+                  ),
                 ],
               )
             ],
