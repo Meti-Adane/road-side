@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:road_side/domain/auth/i_auth_facade.dart';
-import 'package:road_side/domain/auth/token.dart';
+
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -15,7 +15,7 @@ part 'auth_bloc.freezed.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   //TODO - Configure token signOut
   final IAuthFacade _authFacade;
-  late Token token;
+  late String token;
   AuthBloc(this._authFacade) : super(AuthState.initial());
 
   @override

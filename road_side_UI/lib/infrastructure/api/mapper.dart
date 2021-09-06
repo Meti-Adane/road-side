@@ -9,8 +9,8 @@ class Mapper{
     "password":credential.password,
   };
 
-  static Map<String, dynamic> toJson({required EmailAddress emailAddress, required Password password}) => {
-    "email":emailAddress,
+  static Map<String, dynamic> toJson({required Username username, required Password password}) => {
+    "username":username,
     "password":password
 };
 }

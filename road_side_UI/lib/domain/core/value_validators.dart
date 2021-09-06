@@ -12,6 +12,11 @@ Either<ValueFailure<String>, String> validateEmailAddress(String input) {
   }
 }
 
+Either<ValueFailure<String>, String> validateUsername(String input){
+  //TODO Enforce all the rules
+  return right(input);
+}
+
 Either<ValueFailure<String>, String> validatePassword(String input) {
   if (!_shortLength(input)) {
     return left(ValueFailure.shortPassword(failedValue: input));

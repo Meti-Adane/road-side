@@ -1,5 +1,8 @@
-import 'package:uuid/uuid.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'GarageModel.g.dart';
+
+@JsonSerializable()
 class Garage {
   String Name;
   String Id;
@@ -23,17 +26,6 @@ class Garage {
     required this.OngoingServices,
   });
 
-  factory Garage.fromJson(Map<String, dynamic> json) {
-    return Garage(
-      Name: json['name'],
-      Id: json['id'],
-      ImageUrl: json['imageUrl'],
-      ContactNumbers: json['contactNumbers'],
-      WorkingHours: json['workingHours'],
-      Rating: json['rating'],
-      Reviews: json['reviews'],
-      AvailableServices: json['availableServices'],
-      OngoingServices: json['ongoingServices'],
-    );
-  }
+  factory Garage.fromJson(Map<String, dynamic> json) => _$GarageFromJson(json);
+  Map<String, dynamic> toJson() => _$GarageToJson(this);
 }

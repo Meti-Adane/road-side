@@ -4,6 +4,7 @@ class Constants {
   static String appName = "Road Side";
   static String settings = "Setting";
   static String profilePage = "Profile";
+  static const baseUrl = "roadside/api";
 
   //Colors for theme
 //  Color(0xfffcfcff);
