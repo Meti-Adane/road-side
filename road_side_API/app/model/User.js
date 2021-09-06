@@ -58,7 +58,7 @@ const userSchema = mongoose.Schema(
     },
     favorites: {
       type: [mongoose.Schema.Types.ObjectId],
-      ref: "Garage",
+      ref: "garage",
     },
     rated_garages: {
       type: [rating_Schema],

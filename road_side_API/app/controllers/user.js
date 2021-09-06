@@ -20,6 +20,7 @@ export const getUserByID = (req, res, next) => {
       .end();
   }
   User.findById(user_id)
+    .populate("favorites", "name location contact description")
     .then((data) => {
       if (!data) {
         return res.status(404).send({ message: "USER NOT FOUND" }).end();
@@ -33,7 +34,10 @@ export const getUserByID = (req, res, next) => {
           .send({ message: "BAD REQUEST INVLAID ID TYPE " })
           .end();
       }
-      return res.status(500).send({ message: "INTERNAL SERVER ERROR" }).end();
+      return res
+        .status(500)
+        .send({ message: error || "INTERNAL SERVER ERROR" })
+        .end();
     });
 };
 export const addNewUser = async (req, res, next) => {
@@ -118,15 +122,16 @@ export const updateUser = async (req, res) => {
   }
 
   try {
-    const updatedUserData = await User.findByIdAndUpdate(id, req.body);
-    if (!updatedUserData)
+    const isUpdated = await User.findByIdAndUpdate(id, req.body);
+    if (!isUpdated)
       return res
         .status(404)
         .send({
           message: `NOT FOUND`,
         })
         .end();
-    else
+    else {
+      const updatedUserData = await User.findById(id);
       return res
         .status(201)
         .send({
@@ -134,6 +139,7 @@ export const updateUser = async (req, res) => {
           user: updatedUserData,
         })
         .end();
+    }
   } catch (error) {
     console.log(error);
     return res
@@ -157,7 +163,7 @@ export const getUserOrderHistory = async (req, res) => {
       .status(422)
       .send({ message: "Unprocessable Entity invalid id type" })
       .end();
-  const user = await User.findById(id);
+  const user = await User.findById(id).populate("order_history");
   if (!user) {
     return res
       .status(404)
@@ -186,7 +192,7 @@ export const getUserOnGoingServices = async (req, res) => {
       .status(422)
       .send({ message: "Unprocessable Entity invalid id type" })
       .end();
-  const user = await User.findById(id);
+  const user = await User.findById(id).populate("ongoing_services");
   if (!user) {
     return res
       .status(404)
