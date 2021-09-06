@@ -62,42 +62,36 @@ class _MainScreenState extends State<MainScreen> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                        image: NetworkImage(
-                            "https://images.unsplash.com/photo-1630508709012-307fde16c75a?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"),
+                        image: AssetImage(
+                          'assets/userimage.png',
+                        ),
                         fit: BoxFit.cover),
                   ),
                 ),
               ),
-              // ListTile(
-              //   leading: Icon(Icons.message),
-              //   title: Text('Messages'),
-              //   onTap: () {
-              //     Navigator.push(
-              //       context,
-              //       new MaterialPageRoute(builder: (context) => new SettingsPage()),
-              //     );
-              //   }
-              //
-              // ),
               ListTile(
-                leading: Icon(Icons.account_circle),
-                title: Text('Profile'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    new MaterialPageRoute(builder: (context) => new EditProfilePage()),
-                  );
-                }
-                //=> AutoRouter.of(context).replace(const EditProfilePageRoute())
+                  leading: Icon(Icons.account_circle),
+                  title: Text('Profile'),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      new MaterialPageRoute(
+                          builder: (context) => new EditProfilePage()),
+                    );
+                  }
+                  //=> AutoRouter.of(context).replace(const EditProfilePageRoute())
 
-              ),
+                  ),
               ListTile(
                 leading: Icon(Icons.settings),
                 title: Text('Settings'),
                 onTap: () {
+                  Navigator.pop(context);
                   Navigator.push(
                     context,
-                    new MaterialPageRoute(builder: (context) => new SettingsPage()),
+                    new MaterialPageRoute(
+                        builder: (context) => new SettingsPage()),
                   );
                 },
               ),
@@ -122,9 +116,10 @@ class _MainScreenState extends State<MainScreen> {
                   icon: Icon(
                     Icons.home,
                     size: 24.0,
-                  ),color: _page == 0
-                    ? Theme.of(context).accentColor
-                    : Theme.of(context).textTheme.caption!.color,
+                  ),
+                  color: _page == 0
+                      ? Theme.of(context).accentColor
+                      : Theme.of(context).textTheme.caption!.color,
                   onPressed: () => {_pageController.jumpToPage(0)},
                 ),
                 IconButton(
