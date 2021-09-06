@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:road_side/util/const.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -11,7 +12,9 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Theme.of(context).accentColor,
+        title: Text(Constants.settings),
+        centerTitle: true,
         elevation: 1,
         leading: IconButton(
           onPressed: () {
@@ -19,7 +22,7 @@ class _SettingsPageState extends State<SettingsPage> {
           },
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.blue,
+            color: Theme.of(context).buttonColor,
           ),
         ),
       ),
@@ -27,10 +30,12 @@ class _SettingsPageState extends State<SettingsPage> {
         padding: EdgeInsets.only(left: 16, top: 25, right: 16),
         child: ListView(
           children: [
-            Text(
-              "Settings",
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-            ),
+            // Center(
+            //   child: Text(
+            //     "Settings",
+            //     style: TextStyle(fontSize: 35, fontWeight: FontWeight.w600),
+            //   ),
+            // ),
             SizedBox(
               height: 40,
             ),
@@ -38,7 +43,7 @@ class _SettingsPageState extends State<SettingsPage> {
               children: [
                 Icon(
                   Icons.person,
-                  color: Colors.blue,
+                  color: Theme.of(context).accentColor,
                 ),
                 SizedBox(
                   width: 8,
@@ -56,39 +61,37 @@ class _SettingsPageState extends State<SettingsPage> {
             SizedBox(
               height: 10,
             ),
-            buildAccountOptionRow(context, "Change password"),
             buildAccountOptionRow(context, "Content settings"),
-            buildAccountOptionRow(context, "Social"),
             buildAccountOptionRow(context, "Language"),
             buildAccountOptionRow(context, "Privacy and security"),
             SizedBox(
               height: 40,
             ),
-            Row(
-              children: [
-                Icon(
-                  Icons.volume_up_outlined,
-                  color: Colors.blue,
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  "Notifications",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            Divider(
-              height: 15,
-              thickness: 2,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            buildNotificationOptionRow("New for you", true),
-            buildNotificationOptionRow("Account activity", true),
-            buildNotificationOptionRow("Opportunity", false),
+            // Row(
+            //   children: [
+            // Icon(
+            //   Icons.volume_up_outlined,
+            //   color: Theme.of(context).accentColor,
+            // ),
+            //     SizedBox(
+            //       width: 8,
+            //     ),
+            //     Text(
+            //       "Notifications",
+            //       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            //     ),
+            //   ],
+            // ),
+            // Divider(
+            //   height: 15,
+            //   thickness: 2,
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // ),
+            // buildNotificationOptionRow("New for you", true),
+            // buildNotificationOptionRow("Account activity", true),
+            // buildNotificationOptionRow("Opportunity", false),
             SizedBox(
               height: 50,
             ),
