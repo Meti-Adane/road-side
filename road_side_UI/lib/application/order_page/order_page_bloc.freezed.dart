@@ -21,6 +21,10 @@ class _$OrderPageEventTearOff {
       location,
     );
   }
+
+  SearchButtonPressed searchButtonPressed() {
+    return const SearchButtonPressed();
+  }
 }
 
 /// @nodoc
@@ -28,33 +32,31 @@ const $OrderPageEvent = _$OrderPageEventTearOff();
 
 /// @nodoc
 mixin _$OrderPageEvent {
-  String get location => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String location) locationChanged,
+    required TResult Function() searchButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String location)? locationChanged,
+    TResult Function()? searchButtonPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LocationChanged value) locationChanged,
+    required TResult Function(SearchButtonPressed value) searchButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LocationChanged value)? locationChanged,
+    TResult Function(SearchButtonPressed value)? searchButtonPressed,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $OrderPageEventCopyWith<OrderPageEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -63,7 +65,6 @@ abstract class $OrderPageEventCopyWith<$Res> {
   factory $OrderPageEventCopyWith(
           OrderPageEvent value, $Res Function(OrderPageEvent) then) =
       _$OrderPageEventCopyWithImpl<$Res>;
-  $Res call({String location});
 }
 
 /// @nodoc
@@ -74,27 +75,13 @@ class _$OrderPageEventCopyWithImpl<$Res>
   final OrderPageEvent _value;
   // ignore: unused_field
   final $Res Function(OrderPageEvent) _then;
-
-  @override
-  $Res call({
-    Object? location = freezed,
-  }) {
-    return _then(_value.copyWith(
-      location: location == freezed
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class $LocationChangedCopyWith<$Res>
-    implements $OrderPageEventCopyWith<$Res> {
+abstract class $LocationChangedCopyWith<$Res> {
   factory $LocationChangedCopyWith(
           LocationChanged value, $Res Function(LocationChanged) then) =
       _$LocationChangedCopyWithImpl<$Res>;
-  @override
   $Res call({String location});
 }
 
@@ -157,6 +144,7 @@ class _$LocationChanged implements LocationChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String location) locationChanged,
+    required TResult Function() searchButtonPressed,
   }) {
     return locationChanged(location);
   }
@@ -165,6 +153,7 @@ class _$LocationChanged implements LocationChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String location)? locationChanged,
+    TResult Function()? searchButtonPressed,
     required TResult orElse(),
   }) {
     if (locationChanged != null) {
@@ -177,6 +166,7 @@ class _$LocationChanged implements LocationChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LocationChanged value) locationChanged,
+    required TResult Function(SearchButtonPressed value) searchButtonPressed,
   }) {
     return locationChanged(this);
   }
@@ -185,6 +175,7 @@ class _$LocationChanged implements LocationChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LocationChanged value)? locationChanged,
+    TResult Function(SearchButtonPressed value)? searchButtonPressed,
     required TResult orElse(),
   }) {
     if (locationChanged != null) {
@@ -197,12 +188,96 @@ class _$LocationChanged implements LocationChanged {
 abstract class LocationChanged implements OrderPageEvent {
   const factory LocationChanged(String location) = _$LocationChanged;
 
-  @override
   String get location => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   $LocationChangedCopyWith<LocationChanged> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SearchButtonPressedCopyWith<$Res> {
+  factory $SearchButtonPressedCopyWith(
+          SearchButtonPressed value, $Res Function(SearchButtonPressed) then) =
+      _$SearchButtonPressedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$SearchButtonPressedCopyWithImpl<$Res>
+    extends _$OrderPageEventCopyWithImpl<$Res>
+    implements $SearchButtonPressedCopyWith<$Res> {
+  _$SearchButtonPressedCopyWithImpl(
+      SearchButtonPressed _value, $Res Function(SearchButtonPressed) _then)
+      : super(_value, (v) => _then(v as SearchButtonPressed));
+
+  @override
+  SearchButtonPressed get _value => super._value as SearchButtonPressed;
+}
+
+/// @nodoc
+
+class _$SearchButtonPressed implements SearchButtonPressed {
+  const _$SearchButtonPressed();
+
+  @override
+  String toString() {
+    return 'OrderPageEvent.searchButtonPressed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is SearchButtonPressed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String location) locationChanged,
+    required TResult Function() searchButtonPressed,
+  }) {
+    return searchButtonPressed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String location)? locationChanged,
+    TResult Function()? searchButtonPressed,
+    required TResult orElse(),
+  }) {
+    if (searchButtonPressed != null) {
+      return searchButtonPressed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LocationChanged value) locationChanged,
+    required TResult Function(SearchButtonPressed value) searchButtonPressed,
+  }) {
+    return searchButtonPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LocationChanged value)? locationChanged,
+    TResult Function(SearchButtonPressed value)? searchButtonPressed,
+    required TResult orElse(),
+  }) {
+    if (searchButtonPressed != null) {
+      return searchButtonPressed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SearchButtonPressed implements OrderPageEvent {
+  const factory SearchButtonPressed() = _$SearchButtonPressed;
 }
 
 /// @nodoc

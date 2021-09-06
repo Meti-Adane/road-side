@@ -17,10 +17,15 @@ class OrderPageBloc extends Bloc<OrderPageEvent, OrderPageState> {
   Stream<OrderPageState> mapEventToState(
     OrderPageEvent event,
   ) async* {
-    yield* event.map(locationChanged: (e) async* {
-      yield state.copyWith(location: e.location);
-    });
+    yield* event.map(
+        locationChanged: (e) async* {
+          yield state.copyWith(location: e.location);
+        },
+        searchButtonPressed: (e) async* {
+          //yield* _getNearbyGarages();
+        });
   }
 
-  //TODO autocomplete for location page
+  //Stream<OrderPageState> _getNearbyGarages(){}
+//TODO autocomplete for location page
 }
