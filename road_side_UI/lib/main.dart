@@ -14,9 +14,9 @@ Future<void> main() async {
       debugShowCheckedModeBanner: false,
       title: 'Road Side',
       // home: SignInPage(),
-      // home: SettingsUI(),
+      home: SettingsUI(),
       // home: MainScreen(),
-      home: SettingsPage(),
+      // home: SettingsPage(),
     ),
   );
 }
