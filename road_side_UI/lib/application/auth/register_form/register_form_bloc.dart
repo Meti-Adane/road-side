@@ -5,14 +5,15 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:road_side/domain/auth/auth_failure.dart';
-import 'package:road_side/domain/auth/credential.dart';
+import 'package:road_side/models/register_credential/RegisterCredential.dart';
 import 'package:road_side/domain/auth/i_auth_facade.dart';
 import 'package:road_side/domain/auth/value_objects.dart';
 import 'package:road_side/domain/core/value_validators.dart';
 
-
 part 'register_form_event.dart';
+
 part 'register_form_state.dart';
+
 part 'register_form_bloc.freezed.dart';
 
 @injectable
@@ -26,9 +27,27 @@ class RegisterFormBloc extends Bloc<RegisterFormEvent, RegisterFormState> {
     RegisterFormEvent event,
   ) async* {
     yield* event.map(
-      nameChanged: (e) async* {
+      firstNameChanged: (e) async* {
         yield state.copyWith(
-          name: e.nameStr,
+          firstName: e.firstNameStr,
+          authFailureOrSuccessOption: none(),
+        );
+      },
+      lastNameChanged: (e) async* {
+        yield state.copyWith(
+          lastName: e.lastNameStr,
+          authFailureOrSuccessOption: none(),
+        );
+      },
+      usernameChanged: (e) async* {
+        yield state.copyWith(
+          username: e.usernameStr,
+          authFailureOrSuccessOption: none(),
+        );
+      },
+      phoneNumberChanged: (e) async* {
+        yield state.copyWith(
+          phoneNumber: e.phoneStr,
           authFailureOrSuccessOption: none(),
         );
       },
@@ -44,46 +63,48 @@ class RegisterFormBloc extends Bloc<RegisterFormEvent, RegisterFormState> {
           authFailureOrSuccessOption: none(),
         );
       },
-      confirmPasswordChanged: (e) async*{
+      confirmPasswordChanged: (e) async* {
         yield state.copyWith(
           password: Password(e.changedPasswordStr),
           authFailureOrSuccessOption: none(),
         );
       },
       registerWithEmailAndPasswordPressed: (e) async* {
-        final credential = Credential(
-            emailAddress: state.emailAddress,
-            password: state.password,
-            type: AuthType.email,
-            name: state.name
-        );
         yield* _performActionOnAuthFacadeWithEmailAndPassword(
-          _authFacade.registerWithEmailAndPassword, credential
-        );
+            _authFacade.registerWithEmailAndPassword);
       },
     );
   }
 
   Stream<RegisterFormState> _performActionOnAuthFacadeWithEmailAndPassword(
-      Future<Either<AuthFailure, Unit>> Function(
-          Credential credential)
-      forwardedCall, Credential credential
-      ) async* {
+    Future<Either<AuthFailure, Unit>> Function(RegisterCredential credential)
+        forwardedCall,
+  ) async* {
     late Either<AuthFailure, Unit> failureOrSuccess;
 
-
-    final isEmailValid = credential.emailAddress.isValid();
-    final isPasswordValid = credential.password.isValid();
-    final isConfirmValid = validateConfirmPassword(credential.password.toString(), state.confirmPassword.toString()).isRight() ? true : false;
+    final isEmailValid = state.emailAddress.isValid();
+    final isPasswordValid = state.password.isValid();
+    final isConfirmValid = validateConfirmPassword(
+                state.password.toString(), state.confirmPassword.toString())
+            .isRight()
+        ? true
+        : false;
 
     if (isEmailValid && isPasswordValid && isConfirmValid) {
+      RegisterCredential credential = RegisterCredential(
+        firstName: state.firstName,
+        lastName: state.lastName,
+        phoneNumber: state.phoneNumber,
+        username: state.username,
+        emailAddress: state.emailAddress.toString(),
+        password: state.password.toString(),
+      );
       yield state.copyWith(
         isSubmitting: true,
         authFailureOrSuccessOption: none(),
       );
 
       failureOrSuccess = await forwardedCall(credential);
-
     }
     yield state.copyWith(
       isSubmitting: false,

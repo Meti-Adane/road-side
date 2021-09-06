@@ -16,9 +16,27 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$RegisterFormEventTearOff {
   const _$RegisterFormEventTearOff();
 
-  NameChanged nameChanged(String nameStr) {
-    return NameChanged(
-      nameStr,
+  FirstNameChanged firstNameChanged(String firstNameStr) {
+    return FirstNameChanged(
+      firstNameStr,
+    );
+  }
+
+  LastNameChanged lastNameChanged(String lastNameStr) {
+    return LastNameChanged(
+      lastNameStr,
+    );
+  }
+
+  UsernameChanged usernameChanged(String usernameStr) {
+    return UsernameChanged(
+      usernameStr,
+    );
+  }
+
+  PhoneNumberChanged phoneNumberChanged(String phoneStr) {
+    return PhoneNumberChanged(
+      phoneStr,
     );
   }
 
@@ -52,7 +70,10 @@ const $RegisterFormEvent = _$RegisterFormEventTearOff();
 mixin _$RegisterFormEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String firstNameStr) firstNameChanged,
+    required TResult Function(String lastNameStr) lastNameChanged,
+    required TResult Function(String usernameStr) usernameChanged,
+    required TResult Function(String phoneStr) phoneNumberChanged,
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String passwordStr) passwordChanged,
     required TResult Function(String changedPasswordStr) confirmPasswordChanged,
@@ -61,7 +82,10 @@ mixin _$RegisterFormEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String firstNameStr)? firstNameChanged,
+    TResult Function(String lastNameStr)? lastNameChanged,
+    TResult Function(String usernameStr)? usernameChanged,
+    TResult Function(String phoneStr)? phoneNumberChanged,
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String passwordStr)? passwordChanged,
     TResult Function(String changedPasswordStr)? confirmPasswordChanged,
@@ -71,7 +95,10 @@ mixin _$RegisterFormEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(NameChanged value) nameChanged,
+    required TResult Function(FirstNameChanged value) firstNameChanged,
+    required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(UsernameChanged value) usernameChanged,
+    required TResult Function(PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(ConfirmPasswordChanged value)
@@ -82,7 +109,10 @@ mixin _$RegisterFormEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(NameChanged value)? nameChanged,
+    TResult Function(FirstNameChanged value)? firstNameChanged,
+    TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(UsernameChanged value)? usernameChanged,
+    TResult Function(PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(ConfirmPasswordChanged value)? confirmPasswordChanged,
@@ -111,32 +141,32 @@ class _$RegisterFormEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $NameChangedCopyWith<$Res> {
-  factory $NameChangedCopyWith(
-          NameChanged value, $Res Function(NameChanged) then) =
-      _$NameChangedCopyWithImpl<$Res>;
-  $Res call({String nameStr});
+abstract class $FirstNameChangedCopyWith<$Res> {
+  factory $FirstNameChangedCopyWith(
+          FirstNameChanged value, $Res Function(FirstNameChanged) then) =
+      _$FirstNameChangedCopyWithImpl<$Res>;
+  $Res call({String firstNameStr});
 }
 
 /// @nodoc
-class _$NameChangedCopyWithImpl<$Res>
+class _$FirstNameChangedCopyWithImpl<$Res>
     extends _$RegisterFormEventCopyWithImpl<$Res>
-    implements $NameChangedCopyWith<$Res> {
-  _$NameChangedCopyWithImpl(
-      NameChanged _value, $Res Function(NameChanged) _then)
-      : super(_value, (v) => _then(v as NameChanged));
+    implements $FirstNameChangedCopyWith<$Res> {
+  _$FirstNameChangedCopyWithImpl(
+      FirstNameChanged _value, $Res Function(FirstNameChanged) _then)
+      : super(_value, (v) => _then(v as FirstNameChanged));
 
   @override
-  NameChanged get _value => super._value as NameChanged;
+  FirstNameChanged get _value => super._value as FirstNameChanged;
 
   @override
   $Res call({
-    Object? nameStr = freezed,
+    Object? firstNameStr = freezed,
   }) {
-    return _then(NameChanged(
-      nameStr == freezed
-          ? _value.nameStr
-          : nameStr // ignore: cast_nullable_to_non_nullable
+    return _then(FirstNameChanged(
+      firstNameStr == freezed
+          ? _value.firstNameStr
+          : firstNameStr // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -144,58 +174,65 @@ class _$NameChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NameChanged implements NameChanged {
-  const _$NameChanged(this.nameStr);
+class _$FirstNameChanged implements FirstNameChanged {
+  const _$FirstNameChanged(this.firstNameStr);
 
   @override
-  final String nameStr;
+  final String firstNameStr;
 
   @override
   String toString() {
-    return 'RegisterFormEvent.nameChanged(nameStr: $nameStr)';
+    return 'RegisterFormEvent.firstNameChanged(firstNameStr: $firstNameStr)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is NameChanged &&
-            (identical(other.nameStr, nameStr) ||
-                const DeepCollectionEquality().equals(other.nameStr, nameStr)));
+        (other is FirstNameChanged &&
+            (identical(other.firstNameStr, firstNameStr) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstNameStr, firstNameStr)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(nameStr);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(firstNameStr);
 
   @JsonKey(ignore: true)
   @override
-  $NameChangedCopyWith<NameChanged> get copyWith =>
-      _$NameChangedCopyWithImpl<NameChanged>(this, _$identity);
+  $FirstNameChangedCopyWith<FirstNameChanged> get copyWith =>
+      _$FirstNameChangedCopyWithImpl<FirstNameChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String firstNameStr) firstNameChanged,
+    required TResult Function(String lastNameStr) lastNameChanged,
+    required TResult Function(String usernameStr) usernameChanged,
+    required TResult Function(String phoneStr) phoneNumberChanged,
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String passwordStr) passwordChanged,
     required TResult Function(String changedPasswordStr) confirmPasswordChanged,
     required TResult Function() registerWithEmailAndPasswordPressed,
   }) {
-    return nameChanged(nameStr);
+    return firstNameChanged(firstNameStr);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String firstNameStr)? firstNameChanged,
+    TResult Function(String lastNameStr)? lastNameChanged,
+    TResult Function(String usernameStr)? usernameChanged,
+    TResult Function(String phoneStr)? phoneNumberChanged,
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String passwordStr)? passwordChanged,
     TResult Function(String changedPasswordStr)? confirmPasswordChanged,
     TResult Function()? registerWithEmailAndPasswordPressed,
     required TResult orElse(),
   }) {
-    if (nameChanged != null) {
-      return nameChanged(nameStr);
+    if (firstNameChanged != null) {
+      return firstNameChanged(firstNameStr);
     }
     return orElse();
   }
@@ -203,7 +240,10 @@ class _$NameChanged implements NameChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(NameChanged value) nameChanged,
+    required TResult Function(FirstNameChanged value) firstNameChanged,
+    required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(UsernameChanged value) usernameChanged,
+    required TResult Function(PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(ConfirmPasswordChanged value)
@@ -211,13 +251,16 @@ class _$NameChanged implements NameChanged {
     required TResult Function(RegisterWithEmailAndPasswordPressed value)
         registerWithEmailAndPasswordPressed,
   }) {
-    return nameChanged(this);
+    return firstNameChanged(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(NameChanged value)? nameChanged,
+    TResult Function(FirstNameChanged value)? firstNameChanged,
+    TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(UsernameChanged value)? usernameChanged,
+    TResult Function(PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(ConfirmPasswordChanged value)? confirmPasswordChanged,
@@ -225,19 +268,451 @@ class _$NameChanged implements NameChanged {
         registerWithEmailAndPasswordPressed,
     required TResult orElse(),
   }) {
-    if (nameChanged != null) {
-      return nameChanged(this);
+    if (firstNameChanged != null) {
+      return firstNameChanged(this);
     }
     return orElse();
   }
 }
 
-abstract class NameChanged implements RegisterFormEvent {
-  const factory NameChanged(String nameStr) = _$NameChanged;
+abstract class FirstNameChanged implements RegisterFormEvent {
+  const factory FirstNameChanged(String firstNameStr) = _$FirstNameChanged;
 
-  String get nameStr => throw _privateConstructorUsedError;
+  String get firstNameStr => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $NameChangedCopyWith<NameChanged> get copyWith =>
+  $FirstNameChangedCopyWith<FirstNameChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LastNameChangedCopyWith<$Res> {
+  factory $LastNameChangedCopyWith(
+          LastNameChanged value, $Res Function(LastNameChanged) then) =
+      _$LastNameChangedCopyWithImpl<$Res>;
+  $Res call({String lastNameStr});
+}
+
+/// @nodoc
+class _$LastNameChangedCopyWithImpl<$Res>
+    extends _$RegisterFormEventCopyWithImpl<$Res>
+    implements $LastNameChangedCopyWith<$Res> {
+  _$LastNameChangedCopyWithImpl(
+      LastNameChanged _value, $Res Function(LastNameChanged) _then)
+      : super(_value, (v) => _then(v as LastNameChanged));
+
+  @override
+  LastNameChanged get _value => super._value as LastNameChanged;
+
+  @override
+  $Res call({
+    Object? lastNameStr = freezed,
+  }) {
+    return _then(LastNameChanged(
+      lastNameStr == freezed
+          ? _value.lastNameStr
+          : lastNameStr // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LastNameChanged implements LastNameChanged {
+  const _$LastNameChanged(this.lastNameStr);
+
+  @override
+  final String lastNameStr;
+
+  @override
+  String toString() {
+    return 'RegisterFormEvent.lastNameChanged(lastNameStr: $lastNameStr)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LastNameChanged &&
+            (identical(other.lastNameStr, lastNameStr) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastNameStr, lastNameStr)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(lastNameStr);
+
+  @JsonKey(ignore: true)
+  @override
+  $LastNameChangedCopyWith<LastNameChanged> get copyWith =>
+      _$LastNameChangedCopyWithImpl<LastNameChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String firstNameStr) firstNameChanged,
+    required TResult Function(String lastNameStr) lastNameChanged,
+    required TResult Function(String usernameStr) usernameChanged,
+    required TResult Function(String phoneStr) phoneNumberChanged,
+    required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String passwordStr) passwordChanged,
+    required TResult Function(String changedPasswordStr) confirmPasswordChanged,
+    required TResult Function() registerWithEmailAndPasswordPressed,
+  }) {
+    return lastNameChanged(lastNameStr);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String firstNameStr)? firstNameChanged,
+    TResult Function(String lastNameStr)? lastNameChanged,
+    TResult Function(String usernameStr)? usernameChanged,
+    TResult Function(String phoneStr)? phoneNumberChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String passwordStr)? passwordChanged,
+    TResult Function(String changedPasswordStr)? confirmPasswordChanged,
+    TResult Function()? registerWithEmailAndPasswordPressed,
+    required TResult orElse(),
+  }) {
+    if (lastNameChanged != null) {
+      return lastNameChanged(lastNameStr);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FirstNameChanged value) firstNameChanged,
+    required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(UsernameChanged value) usernameChanged,
+    required TResult Function(PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(ConfirmPasswordChanged value)
+        confirmPasswordChanged,
+    required TResult Function(RegisterWithEmailAndPasswordPressed value)
+        registerWithEmailAndPasswordPressed,
+  }) {
+    return lastNameChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FirstNameChanged value)? firstNameChanged,
+    TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(UsernameChanged value)? usernameChanged,
+    TResult Function(PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ConfirmPasswordChanged value)? confirmPasswordChanged,
+    TResult Function(RegisterWithEmailAndPasswordPressed value)?
+        registerWithEmailAndPasswordPressed,
+    required TResult orElse(),
+  }) {
+    if (lastNameChanged != null) {
+      return lastNameChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LastNameChanged implements RegisterFormEvent {
+  const factory LastNameChanged(String lastNameStr) = _$LastNameChanged;
+
+  String get lastNameStr => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LastNameChangedCopyWith<LastNameChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UsernameChangedCopyWith<$Res> {
+  factory $UsernameChangedCopyWith(
+          UsernameChanged value, $Res Function(UsernameChanged) then) =
+      _$UsernameChangedCopyWithImpl<$Res>;
+  $Res call({String usernameStr});
+}
+
+/// @nodoc
+class _$UsernameChangedCopyWithImpl<$Res>
+    extends _$RegisterFormEventCopyWithImpl<$Res>
+    implements $UsernameChangedCopyWith<$Res> {
+  _$UsernameChangedCopyWithImpl(
+      UsernameChanged _value, $Res Function(UsernameChanged) _then)
+      : super(_value, (v) => _then(v as UsernameChanged));
+
+  @override
+  UsernameChanged get _value => super._value as UsernameChanged;
+
+  @override
+  $Res call({
+    Object? usernameStr = freezed,
+  }) {
+    return _then(UsernameChanged(
+      usernameStr == freezed
+          ? _value.usernameStr
+          : usernameStr // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UsernameChanged implements UsernameChanged {
+  const _$UsernameChanged(this.usernameStr);
+
+  @override
+  final String usernameStr;
+
+  @override
+  String toString() {
+    return 'RegisterFormEvent.usernameChanged(usernameStr: $usernameStr)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UsernameChanged &&
+            (identical(other.usernameStr, usernameStr) ||
+                const DeepCollectionEquality()
+                    .equals(other.usernameStr, usernameStr)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(usernameStr);
+
+  @JsonKey(ignore: true)
+  @override
+  $UsernameChangedCopyWith<UsernameChanged> get copyWith =>
+      _$UsernameChangedCopyWithImpl<UsernameChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String firstNameStr) firstNameChanged,
+    required TResult Function(String lastNameStr) lastNameChanged,
+    required TResult Function(String usernameStr) usernameChanged,
+    required TResult Function(String phoneStr) phoneNumberChanged,
+    required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String passwordStr) passwordChanged,
+    required TResult Function(String changedPasswordStr) confirmPasswordChanged,
+    required TResult Function() registerWithEmailAndPasswordPressed,
+  }) {
+    return usernameChanged(usernameStr);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String firstNameStr)? firstNameChanged,
+    TResult Function(String lastNameStr)? lastNameChanged,
+    TResult Function(String usernameStr)? usernameChanged,
+    TResult Function(String phoneStr)? phoneNumberChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String passwordStr)? passwordChanged,
+    TResult Function(String changedPasswordStr)? confirmPasswordChanged,
+    TResult Function()? registerWithEmailAndPasswordPressed,
+    required TResult orElse(),
+  }) {
+    if (usernameChanged != null) {
+      return usernameChanged(usernameStr);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FirstNameChanged value) firstNameChanged,
+    required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(UsernameChanged value) usernameChanged,
+    required TResult Function(PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(ConfirmPasswordChanged value)
+        confirmPasswordChanged,
+    required TResult Function(RegisterWithEmailAndPasswordPressed value)
+        registerWithEmailAndPasswordPressed,
+  }) {
+    return usernameChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FirstNameChanged value)? firstNameChanged,
+    TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(UsernameChanged value)? usernameChanged,
+    TResult Function(PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ConfirmPasswordChanged value)? confirmPasswordChanged,
+    TResult Function(RegisterWithEmailAndPasswordPressed value)?
+        registerWithEmailAndPasswordPressed,
+    required TResult orElse(),
+  }) {
+    if (usernameChanged != null) {
+      return usernameChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UsernameChanged implements RegisterFormEvent {
+  const factory UsernameChanged(String usernameStr) = _$UsernameChanged;
+
+  String get usernameStr => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UsernameChangedCopyWith<UsernameChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PhoneNumberChangedCopyWith<$Res> {
+  factory $PhoneNumberChangedCopyWith(
+          PhoneNumberChanged value, $Res Function(PhoneNumberChanged) then) =
+      _$PhoneNumberChangedCopyWithImpl<$Res>;
+  $Res call({String phoneStr});
+}
+
+/// @nodoc
+class _$PhoneNumberChangedCopyWithImpl<$Res>
+    extends _$RegisterFormEventCopyWithImpl<$Res>
+    implements $PhoneNumberChangedCopyWith<$Res> {
+  _$PhoneNumberChangedCopyWithImpl(
+      PhoneNumberChanged _value, $Res Function(PhoneNumberChanged) _then)
+      : super(_value, (v) => _then(v as PhoneNumberChanged));
+
+  @override
+  PhoneNumberChanged get _value => super._value as PhoneNumberChanged;
+
+  @override
+  $Res call({
+    Object? phoneStr = freezed,
+  }) {
+    return _then(PhoneNumberChanged(
+      phoneStr == freezed
+          ? _value.phoneStr
+          : phoneStr // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PhoneNumberChanged implements PhoneNumberChanged {
+  const _$PhoneNumberChanged(this.phoneStr);
+
+  @override
+  final String phoneStr;
+
+  @override
+  String toString() {
+    return 'RegisterFormEvent.phoneNumberChanged(phoneStr: $phoneStr)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PhoneNumberChanged &&
+            (identical(other.phoneStr, phoneStr) ||
+                const DeepCollectionEquality()
+                    .equals(other.phoneStr, phoneStr)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(phoneStr);
+
+  @JsonKey(ignore: true)
+  @override
+  $PhoneNumberChangedCopyWith<PhoneNumberChanged> get copyWith =>
+      _$PhoneNumberChangedCopyWithImpl<PhoneNumberChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String firstNameStr) firstNameChanged,
+    required TResult Function(String lastNameStr) lastNameChanged,
+    required TResult Function(String usernameStr) usernameChanged,
+    required TResult Function(String phoneStr) phoneNumberChanged,
+    required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String passwordStr) passwordChanged,
+    required TResult Function(String changedPasswordStr) confirmPasswordChanged,
+    required TResult Function() registerWithEmailAndPasswordPressed,
+  }) {
+    return phoneNumberChanged(phoneStr);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String firstNameStr)? firstNameChanged,
+    TResult Function(String lastNameStr)? lastNameChanged,
+    TResult Function(String usernameStr)? usernameChanged,
+    TResult Function(String phoneStr)? phoneNumberChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String passwordStr)? passwordChanged,
+    TResult Function(String changedPasswordStr)? confirmPasswordChanged,
+    TResult Function()? registerWithEmailAndPasswordPressed,
+    required TResult orElse(),
+  }) {
+    if (phoneNumberChanged != null) {
+      return phoneNumberChanged(phoneStr);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FirstNameChanged value) firstNameChanged,
+    required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(UsernameChanged value) usernameChanged,
+    required TResult Function(PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(ConfirmPasswordChanged value)
+        confirmPasswordChanged,
+    required TResult Function(RegisterWithEmailAndPasswordPressed value)
+        registerWithEmailAndPasswordPressed,
+  }) {
+    return phoneNumberChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FirstNameChanged value)? firstNameChanged,
+    TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(UsernameChanged value)? usernameChanged,
+    TResult Function(PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ConfirmPasswordChanged value)? confirmPasswordChanged,
+    TResult Function(RegisterWithEmailAndPasswordPressed value)?
+        registerWithEmailAndPasswordPressed,
+    required TResult orElse(),
+  }) {
+    if (phoneNumberChanged != null) {
+      return phoneNumberChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PhoneNumberChanged implements RegisterFormEvent {
+  const factory PhoneNumberChanged(String phoneStr) = _$PhoneNumberChanged;
+
+  String get phoneStr => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PhoneNumberChangedCopyWith<PhoneNumberChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -307,7 +782,10 @@ class _$EmailChanged implements EmailChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String firstNameStr) firstNameChanged,
+    required TResult Function(String lastNameStr) lastNameChanged,
+    required TResult Function(String usernameStr) usernameChanged,
+    required TResult Function(String phoneStr) phoneNumberChanged,
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String passwordStr) passwordChanged,
     required TResult Function(String changedPasswordStr) confirmPasswordChanged,
@@ -319,7 +797,10 @@ class _$EmailChanged implements EmailChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String firstNameStr)? firstNameChanged,
+    TResult Function(String lastNameStr)? lastNameChanged,
+    TResult Function(String usernameStr)? usernameChanged,
+    TResult Function(String phoneStr)? phoneNumberChanged,
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String passwordStr)? passwordChanged,
     TResult Function(String changedPasswordStr)? confirmPasswordChanged,
@@ -335,7 +816,10 @@ class _$EmailChanged implements EmailChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(NameChanged value) nameChanged,
+    required TResult Function(FirstNameChanged value) firstNameChanged,
+    required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(UsernameChanged value) usernameChanged,
+    required TResult Function(PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(ConfirmPasswordChanged value)
@@ -349,7 +833,10 @@ class _$EmailChanged implements EmailChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(NameChanged value)? nameChanged,
+    TResult Function(FirstNameChanged value)? firstNameChanged,
+    TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(UsernameChanged value)? usernameChanged,
+    TResult Function(PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(ConfirmPasswordChanged value)? confirmPasswordChanged,
@@ -439,7 +926,10 @@ class _$PasswordChanged implements PasswordChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String firstNameStr) firstNameChanged,
+    required TResult Function(String lastNameStr) lastNameChanged,
+    required TResult Function(String usernameStr) usernameChanged,
+    required TResult Function(String phoneStr) phoneNumberChanged,
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String passwordStr) passwordChanged,
     required TResult Function(String changedPasswordStr) confirmPasswordChanged,
@@ -451,7 +941,10 @@ class _$PasswordChanged implements PasswordChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String firstNameStr)? firstNameChanged,
+    TResult Function(String lastNameStr)? lastNameChanged,
+    TResult Function(String usernameStr)? usernameChanged,
+    TResult Function(String phoneStr)? phoneNumberChanged,
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String passwordStr)? passwordChanged,
     TResult Function(String changedPasswordStr)? confirmPasswordChanged,
@@ -467,7 +960,10 @@ class _$PasswordChanged implements PasswordChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(NameChanged value) nameChanged,
+    required TResult Function(FirstNameChanged value) firstNameChanged,
+    required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(UsernameChanged value) usernameChanged,
+    required TResult Function(PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(ConfirmPasswordChanged value)
@@ -481,7 +977,10 @@ class _$PasswordChanged implements PasswordChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(NameChanged value)? nameChanged,
+    TResult Function(FirstNameChanged value)? firstNameChanged,
+    TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(UsernameChanged value)? usernameChanged,
+    TResult Function(PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(ConfirmPasswordChanged value)? confirmPasswordChanged,
@@ -573,7 +1072,10 @@ class _$ConfirmPasswordChanged implements ConfirmPasswordChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String firstNameStr) firstNameChanged,
+    required TResult Function(String lastNameStr) lastNameChanged,
+    required TResult Function(String usernameStr) usernameChanged,
+    required TResult Function(String phoneStr) phoneNumberChanged,
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String passwordStr) passwordChanged,
     required TResult Function(String changedPasswordStr) confirmPasswordChanged,
@@ -585,7 +1087,10 @@ class _$ConfirmPasswordChanged implements ConfirmPasswordChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String firstNameStr)? firstNameChanged,
+    TResult Function(String lastNameStr)? lastNameChanged,
+    TResult Function(String usernameStr)? usernameChanged,
+    TResult Function(String phoneStr)? phoneNumberChanged,
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String passwordStr)? passwordChanged,
     TResult Function(String changedPasswordStr)? confirmPasswordChanged,
@@ -601,7 +1106,10 @@ class _$ConfirmPasswordChanged implements ConfirmPasswordChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(NameChanged value) nameChanged,
+    required TResult Function(FirstNameChanged value) firstNameChanged,
+    required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(UsernameChanged value) usernameChanged,
+    required TResult Function(PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(ConfirmPasswordChanged value)
@@ -615,7 +1123,10 @@ class _$ConfirmPasswordChanged implements ConfirmPasswordChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(NameChanged value)? nameChanged,
+    TResult Function(FirstNameChanged value)? firstNameChanged,
+    TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(UsernameChanged value)? usernameChanged,
+    TResult Function(PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(ConfirmPasswordChanged value)? confirmPasswordChanged,
@@ -685,7 +1196,10 @@ class _$RegisterWithEmailAndPasswordPressed
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String firstNameStr) firstNameChanged,
+    required TResult Function(String lastNameStr) lastNameChanged,
+    required TResult Function(String usernameStr) usernameChanged,
+    required TResult Function(String phoneStr) phoneNumberChanged,
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String passwordStr) passwordChanged,
     required TResult Function(String changedPasswordStr) confirmPasswordChanged,
@@ -697,7 +1211,10 @@ class _$RegisterWithEmailAndPasswordPressed
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String firstNameStr)? firstNameChanged,
+    TResult Function(String lastNameStr)? lastNameChanged,
+    TResult Function(String usernameStr)? usernameChanged,
+    TResult Function(String phoneStr)? phoneNumberChanged,
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String passwordStr)? passwordChanged,
     TResult Function(String changedPasswordStr)? confirmPasswordChanged,
@@ -713,7 +1230,10 @@ class _$RegisterWithEmailAndPasswordPressed
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(NameChanged value) nameChanged,
+    required TResult Function(FirstNameChanged value) firstNameChanged,
+    required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(UsernameChanged value) usernameChanged,
+    required TResult Function(PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(ConfirmPasswordChanged value)
@@ -727,7 +1247,10 @@ class _$RegisterWithEmailAndPasswordPressed
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(NameChanged value)? nameChanged,
+    TResult Function(FirstNameChanged value)? firstNameChanged,
+    TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(UsernameChanged value)? usernameChanged,
+    TResult Function(PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(ConfirmPasswordChanged value)? confirmPasswordChanged,
@@ -753,7 +1276,10 @@ class _$RegisterFormStateTearOff {
   const _$RegisterFormStateTearOff();
 
   _RegisterFormState call(
-      {required String name,
+      {required String firstName,
+      required String lastName,
+      required String username,
+      required String phoneNumber,
       required EmailAddress emailAddress,
       required Password password,
       required Password confirmPassword,
@@ -761,7 +1287,10 @@ class _$RegisterFormStateTearOff {
       required bool isSubmitting,
       required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption}) {
     return _RegisterFormState(
-      name: name,
+      firstName: firstName,
+      lastName: lastName,
+      username: username,
+      phoneNumber: phoneNumber,
       emailAddress: emailAddress,
       password: password,
       confirmPassword: confirmPassword,
@@ -777,7 +1306,10 @@ const $RegisterFormState = _$RegisterFormStateTearOff();
 
 /// @nodoc
 mixin _$RegisterFormState {
-  String get name => throw _privateConstructorUsedError;
+  String get firstName => throw _privateConstructorUsedError;
+  String get lastName => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
+  String get phoneNumber => throw _privateConstructorUsedError;
   EmailAddress get emailAddress => throw _privateConstructorUsedError;
   Password get password => throw _privateConstructorUsedError;
   Password get confirmPassword => throw _privateConstructorUsedError;
@@ -797,7 +1329,10 @@ abstract class $RegisterFormStateCopyWith<$Res> {
           RegisterFormState value, $Res Function(RegisterFormState) then) =
       _$RegisterFormStateCopyWithImpl<$Res>;
   $Res call(
-      {String name,
+      {String firstName,
+      String lastName,
+      String username,
+      String phoneNumber,
       EmailAddress emailAddress,
       Password password,
       Password confirmPassword,
@@ -817,7 +1352,10 @@ class _$RegisterFormStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? name = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? username = freezed,
+    Object? phoneNumber = freezed,
     Object? emailAddress = freezed,
     Object? password = freezed,
     Object? confirmPassword = freezed,
@@ -826,9 +1364,21 @@ class _$RegisterFormStateCopyWithImpl<$Res>
     Object? authFailureOrSuccessOption = freezed,
   }) {
     return _then(_value.copyWith(
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      firstName: firstName == freezed
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: lastName == freezed
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      username: username == freezed
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      phoneNumber: phoneNumber == freezed
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
       emailAddress: emailAddress == freezed
           ? _value.emailAddress
@@ -866,7 +1416,10 @@ abstract class _$RegisterFormStateCopyWith<$Res>
       __$RegisterFormStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String name,
+      {String firstName,
+      String lastName,
+      String username,
+      String phoneNumber,
       EmailAddress emailAddress,
       Password password,
       Password confirmPassword,
@@ -888,7 +1441,10 @@ class __$RegisterFormStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? name = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? username = freezed,
+    Object? phoneNumber = freezed,
     Object? emailAddress = freezed,
     Object? password = freezed,
     Object? confirmPassword = freezed,
@@ -897,9 +1453,21 @@ class __$RegisterFormStateCopyWithImpl<$Res>
     Object? authFailureOrSuccessOption = freezed,
   }) {
     return _then(_RegisterFormState(
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      firstName: firstName == freezed
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: lastName == freezed
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      username: username == freezed
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      phoneNumber: phoneNumber == freezed
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
       emailAddress: emailAddress == freezed
           ? _value.emailAddress
@@ -933,7 +1501,10 @@ class __$RegisterFormStateCopyWithImpl<$Res>
 
 class _$_RegisterFormState implements _RegisterFormState {
   const _$_RegisterFormState(
-      {required this.name,
+      {required this.firstName,
+      required this.lastName,
+      required this.username,
+      required this.phoneNumber,
       required this.emailAddress,
       required this.password,
       required this.confirmPassword,
@@ -942,7 +1513,13 @@ class _$_RegisterFormState implements _RegisterFormState {
       required this.authFailureOrSuccessOption});
 
   @override
-  final String name;
+  final String firstName;
+  @override
+  final String lastName;
+  @override
+  final String username;
+  @override
+  final String phoneNumber;
   @override
   final EmailAddress emailAddress;
   @override
@@ -958,15 +1535,25 @@ class _$_RegisterFormState implements _RegisterFormState {
 
   @override
   String toString() {
-    return 'RegisterFormState(name: $name, emailAddress: $emailAddress, password: $password, confirmPassword: $confirmPassword, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
+    return 'RegisterFormState(firstName: $firstName, lastName: $lastName, username: $username, phoneNumber: $phoneNumber, emailAddress: $emailAddress, password: $password, confirmPassword: $confirmPassword, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _RegisterFormState &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.firstName, firstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstName, firstName)) &&
+            (identical(other.lastName, lastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastName, lastName)) &&
+            (identical(other.username, username) ||
+                const DeepCollectionEquality()
+                    .equals(other.username, username)) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.phoneNumber, phoneNumber)) &&
             (identical(other.emailAddress, emailAddress) ||
                 const DeepCollectionEquality()
                     .equals(other.emailAddress, emailAddress)) &&
@@ -992,7 +1579,10 @@ class _$_RegisterFormState implements _RegisterFormState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(firstName) ^
+      const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(username) ^
+      const DeepCollectionEquality().hash(phoneNumber) ^
       const DeepCollectionEquality().hash(emailAddress) ^
       const DeepCollectionEquality().hash(password) ^
       const DeepCollectionEquality().hash(confirmPassword) ^
@@ -1008,7 +1598,10 @@ class _$_RegisterFormState implements _RegisterFormState {
 
 abstract class _RegisterFormState implements RegisterFormState {
   const factory _RegisterFormState(
-      {required String name,
+      {required String firstName,
+      required String lastName,
+      required String username,
+      required String phoneNumber,
       required EmailAddress emailAddress,
       required Password password,
       required Password confirmPassword,
@@ -1018,7 +1611,13 @@ abstract class _RegisterFormState implements RegisterFormState {
           authFailureOrSuccessOption}) = _$_RegisterFormState;
 
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get firstName => throw _privateConstructorUsedError;
+  @override
+  String get lastName => throw _privateConstructorUsedError;
+  @override
+  String get username => throw _privateConstructorUsedError;
+  @override
+  String get phoneNumber => throw _privateConstructorUsedError;
   @override
   EmailAddress get emailAddress => throw _privateConstructorUsedError;
   @override
