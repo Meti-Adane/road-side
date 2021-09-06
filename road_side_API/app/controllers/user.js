@@ -1,5 +1,6 @@
 import User from "../model/User.js";
 import bcrypt from "bcryptjs";
+import { ObjectId } from "bson";
 export const getAllUsers = (req, res, next) => {
   res
     .status(200)
@@ -60,7 +61,39 @@ export const addNewUser = async (req, res, next) => {
     }
   }
 };
-export const deleteUser = (req, res) => {};
+export const deleteUser = async (req, res) => {
+  const id = req.params.id;
+  if (!id)
+    return res
+      .status(400)
+      .send({ messgage: "BAD REQUEST missing inputs" })
+      .end();
+  if (!ObjectId.isValid(id))
+    return res
+      .status(422)
+      .send({ message: "Unprocessable Entity invalid id type" })
+      .end();
+
+  const userExists = await User.findById(id);
+  if (!userExists) {
+    return res
+      .status(404)
+      .send({ messgage: "NOT FOUND no User with this id" })
+      .end();
+  } else {
+    try {
+      const deletedUser = await User.findByIdAndRemove(id);
+      return res
+        .status(204)
+        .send({ messgage: "NO CONTENT User deleted", deletedUser });
+    } catch (error) {
+      return res
+        .status(500)
+        .send({ message: error || "INTERNAL SERVER ERROR", deletedUser })
+        .end();
+    }
+  }
+};
 
 export const updateProfile = (req, res) => {};
 
