@@ -35,6 +35,9 @@ dependencies:
   http: ^0.13.3
   auto_route:
   uuid: 3.0.4
+  sqflite:
+  path:
+  json_annotation: ^4.0.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -48,6 +51,9 @@ dev_dependencies:
   injectable_generator: ^1.4.1
   lint: ^1.5.3
   auto_route_generator:
+  mockito:
+  test:
+  json_serializable: ^4.1.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

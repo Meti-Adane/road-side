@@ -1,8 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:road_side/presentation/home/home.dart';
 import 'package:road_side/presentation/order_page/order_page.dart';
+import 'package:road_side/presentation/profile/profile_screen.dart';
+import 'package:road_side/presentation/setting/setting_screen.dart';
 import 'package:road_side/util/const.dart';
+import 'package:road_side/presentation/routes/router.gr.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -58,34 +62,37 @@ class _MainScreenState extends State<MainScreen> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                        image: NetworkImage(
-                            "https://images.unsplash.com/photo-1630508709012-307fde16c75a?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"),
+                        image: AssetImage(
+                          'assets/userimage.png',
+                        ),
                         fit: BoxFit.cover),
                   ),
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.message),
-                title: Text('Messages'),
-                onTap: () {
-                  //TODO - Update the state of the app
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.account_circle),
-                title: Text('Profile'),
-                onTap: () {
-                  //TODO - Update the state of the app
-                  Navigator.pop(context);
-                },
-              ),
+                  leading: Icon(Icons.account_circle),
+                  title: Text('Profile'),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      new MaterialPageRoute(
+                          builder: (context) => new EditProfilePage()),
+                    );
+                  }
+                  //=> AutoRouter.of(context).replace(const EditProfilePageRoute())
+
+                  ),
               ListTile(
                 leading: Icon(Icons.settings),
                 title: Text('Settings'),
                 onTap: () {
-                  //TODO - Update the state of the app
                   Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new SettingsPage()),
+                  );
                 },
               ),
             ],
@@ -109,9 +116,10 @@ class _MainScreenState extends State<MainScreen> {
                   icon: Icon(
                     Icons.home,
                     size: 24.0,
-                  ),color: _page == 0
-                    ? Theme.of(context).accentColor
-                    : Theme.of(context).textTheme.caption!.color,
+                  ),
+                  color: _page == 0
+                      ? Theme.of(context).accentColor
+                      : Theme.of(context).textTheme.caption!.color,
                   onPressed: () => {_pageController.jumpToPage(0)},
                 ),
                 IconButton(

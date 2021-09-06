@@ -22,6 +22,18 @@ class _$ValueFailureTearOff {
     );
   }
 
+  ShortUsername<T> shortUsername<T>({required T failedValue}) {
+    return ShortUsername<T>(
+      failedValue: failedValue,
+    );
+  }
+
+  MustBeginWithLetter<T> mustBeginWithLetter<T>({required T failedValue}) {
+    return MustBeginWithLetter<T>(
+      failedValue: failedValue,
+    );
+  }
+
   ShortPassword<T> shortPassword<T>({required T failedValue}) {
     return ShortPassword<T>(
       failedValue: failedValue,
@@ -57,6 +69,8 @@ mixin _$ValueFailure<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) invalidEmail,
+    required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) mustBeginWithLetter,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) mustContainCapital,
     required TResult Function(T failedValue) mustContainDigit,
@@ -66,6 +80,8 @@ mixin _$ValueFailure<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? mustBeginWithLetter,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? mustContainCapital,
     TResult Function(T failedValue)? mustContainDigit,
@@ -76,6 +92,8 @@ mixin _$ValueFailure<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InvalidEmail<T> value) invalidEmail,
+    required TResult Function(ShortUsername<T> value) shortUsername,
+    required TResult Function(MustBeginWithLetter<T> value) mustBeginWithLetter,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(MustContainCapital<T> value) mustContainCapital,
     required TResult Function(MustContainDigit<T> value) mustContainDigit,
@@ -86,6 +104,8 @@ mixin _$ValueFailure<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortUsername<T> value)? shortUsername,
+    TResult Function(MustBeginWithLetter<T> value)? mustBeginWithLetter,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(MustContainCapital<T> value)? mustContainCapital,
     TResult Function(MustContainDigit<T> value)? mustContainDigit,
@@ -198,6 +218,8 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) invalidEmail,
+    required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) mustBeginWithLetter,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) mustContainCapital,
     required TResult Function(T failedValue) mustContainDigit,
@@ -210,6 +232,8 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? mustBeginWithLetter,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? mustContainCapital,
     TResult Function(T failedValue)? mustContainDigit,
@@ -226,6 +250,8 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InvalidEmail<T> value) invalidEmail,
+    required TResult Function(ShortUsername<T> value) shortUsername,
+    required TResult Function(MustBeginWithLetter<T> value) mustBeginWithLetter,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(MustContainCapital<T> value) mustContainCapital,
     required TResult Function(MustContainDigit<T> value) mustContainDigit,
@@ -239,6 +265,8 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortUsername<T> value)? shortUsername,
+    TResult Function(MustBeginWithLetter<T> value)? mustBeginWithLetter,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(MustContainCapital<T> value)? mustContainCapital,
     TResult Function(MustContainDigit<T> value)? mustContainDigit,
@@ -260,6 +288,292 @@ abstract class InvalidEmail<T> implements ValueFailure<T> {
   @override
   @JsonKey(ignore: true)
   $InvalidEmailCopyWith<T, InvalidEmail<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ShortUsernameCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory $ShortUsernameCopyWith(
+          ShortUsername<T> value, $Res Function(ShortUsername<T>) then) =
+      _$ShortUsernameCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class _$ShortUsernameCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements $ShortUsernameCopyWith<T, $Res> {
+  _$ShortUsernameCopyWithImpl(
+      ShortUsername<T> _value, $Res Function(ShortUsername<T>) _then)
+      : super(_value, (v) => _then(v as ShortUsername<T>));
+
+  @override
+  ShortUsername<T> get _value => super._value as ShortUsername<T>;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+  }) {
+    return _then(ShortUsername<T>(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ShortUsername<T> implements ShortUsername<T> {
+  const _$ShortUsername({required this.failedValue});
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString() {
+    return 'ValueFailure<$T>.shortUsername(failedValue: $failedValue)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ShortUsername<T> &&
+            (identical(other.failedValue, failedValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.failedValue, failedValue)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
+
+  @JsonKey(ignore: true)
+  @override
+  $ShortUsernameCopyWith<T, ShortUsername<T>> get copyWith =>
+      _$ShortUsernameCopyWithImpl<T, ShortUsername<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue) invalidEmail,
+    required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) mustBeginWithLetter,
+    required TResult Function(T failedValue) shortPassword,
+    required TResult Function(T failedValue) mustContainCapital,
+    required TResult Function(T failedValue) mustContainDigit,
+    required TResult Function(T failedValue) passwordsMustMatch,
+  }) {
+    return shortUsername(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? mustBeginWithLetter,
+    TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? mustContainCapital,
+    TResult Function(T failedValue)? mustContainDigit,
+    TResult Function(T failedValue)? passwordsMustMatch,
+    required TResult orElse(),
+  }) {
+    if (shortUsername != null) {
+      return shortUsername(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InvalidEmail<T> value) invalidEmail,
+    required TResult Function(ShortUsername<T> value) shortUsername,
+    required TResult Function(MustBeginWithLetter<T> value) mustBeginWithLetter,
+    required TResult Function(ShortPassword<T> value) shortPassword,
+    required TResult Function(MustContainCapital<T> value) mustContainCapital,
+    required TResult Function(MustContainDigit<T> value) mustContainDigit,
+    required TResult Function(InvalidConfirmPassword<T> value)
+        passwordsMustMatch,
+  }) {
+    return shortUsername(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortUsername<T> value)? shortUsername,
+    TResult Function(MustBeginWithLetter<T> value)? mustBeginWithLetter,
+    TResult Function(ShortPassword<T> value)? shortPassword,
+    TResult Function(MustContainCapital<T> value)? mustContainCapital,
+    TResult Function(MustContainDigit<T> value)? mustContainDigit,
+    TResult Function(InvalidConfirmPassword<T> value)? passwordsMustMatch,
+    required TResult orElse(),
+  }) {
+    if (shortUsername != null) {
+      return shortUsername(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ShortUsername<T> implements ValueFailure<T> {
+  const factory ShortUsername({required T failedValue}) = _$ShortUsername<T>;
+
+  @override
+  T get failedValue => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $ShortUsernameCopyWith<T, ShortUsername<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MustBeginWithLetterCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory $MustBeginWithLetterCopyWith(MustBeginWithLetter<T> value,
+          $Res Function(MustBeginWithLetter<T>) then) =
+      _$MustBeginWithLetterCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class _$MustBeginWithLetterCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements $MustBeginWithLetterCopyWith<T, $Res> {
+  _$MustBeginWithLetterCopyWithImpl(MustBeginWithLetter<T> _value,
+      $Res Function(MustBeginWithLetter<T>) _then)
+      : super(_value, (v) => _then(v as MustBeginWithLetter<T>));
+
+  @override
+  MustBeginWithLetter<T> get _value => super._value as MustBeginWithLetter<T>;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+  }) {
+    return _then(MustBeginWithLetter<T>(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MustBeginWithLetter<T> implements MustBeginWithLetter<T> {
+  const _$MustBeginWithLetter({required this.failedValue});
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString() {
+    return 'ValueFailure<$T>.mustBeginWithLetter(failedValue: $failedValue)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is MustBeginWithLetter<T> &&
+            (identical(other.failedValue, failedValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.failedValue, failedValue)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
+
+  @JsonKey(ignore: true)
+  @override
+  $MustBeginWithLetterCopyWith<T, MustBeginWithLetter<T>> get copyWith =>
+      _$MustBeginWithLetterCopyWithImpl<T, MustBeginWithLetter<T>>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue) invalidEmail,
+    required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) mustBeginWithLetter,
+    required TResult Function(T failedValue) shortPassword,
+    required TResult Function(T failedValue) mustContainCapital,
+    required TResult Function(T failedValue) mustContainDigit,
+    required TResult Function(T failedValue) passwordsMustMatch,
+  }) {
+    return mustBeginWithLetter(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? mustBeginWithLetter,
+    TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? mustContainCapital,
+    TResult Function(T failedValue)? mustContainDigit,
+    TResult Function(T failedValue)? passwordsMustMatch,
+    required TResult orElse(),
+  }) {
+    if (mustBeginWithLetter != null) {
+      return mustBeginWithLetter(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InvalidEmail<T> value) invalidEmail,
+    required TResult Function(ShortUsername<T> value) shortUsername,
+    required TResult Function(MustBeginWithLetter<T> value) mustBeginWithLetter,
+    required TResult Function(ShortPassword<T> value) shortPassword,
+    required TResult Function(MustContainCapital<T> value) mustContainCapital,
+    required TResult Function(MustContainDigit<T> value) mustContainDigit,
+    required TResult Function(InvalidConfirmPassword<T> value)
+        passwordsMustMatch,
+  }) {
+    return mustBeginWithLetter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortUsername<T> value)? shortUsername,
+    TResult Function(MustBeginWithLetter<T> value)? mustBeginWithLetter,
+    TResult Function(ShortPassword<T> value)? shortPassword,
+    TResult Function(MustContainCapital<T> value)? mustContainCapital,
+    TResult Function(MustContainDigit<T> value)? mustContainDigit,
+    TResult Function(InvalidConfirmPassword<T> value)? passwordsMustMatch,
+    required TResult orElse(),
+  }) {
+    if (mustBeginWithLetter != null) {
+      return mustBeginWithLetter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MustBeginWithLetter<T> implements ValueFailure<T> {
+  const factory MustBeginWithLetter({required T failedValue}) =
+      _$MustBeginWithLetter<T>;
+
+  @override
+  T get failedValue => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $MustBeginWithLetterCopyWith<T, MustBeginWithLetter<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -332,6 +646,8 @@ class _$ShortPassword<T> implements ShortPassword<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) invalidEmail,
+    required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) mustBeginWithLetter,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) mustContainCapital,
     required TResult Function(T failedValue) mustContainDigit,
@@ -344,6 +660,8 @@ class _$ShortPassword<T> implements ShortPassword<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? mustBeginWithLetter,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? mustContainCapital,
     TResult Function(T failedValue)? mustContainDigit,
@@ -360,6 +678,8 @@ class _$ShortPassword<T> implements ShortPassword<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InvalidEmail<T> value) invalidEmail,
+    required TResult Function(ShortUsername<T> value) shortUsername,
+    required TResult Function(MustBeginWithLetter<T> value) mustBeginWithLetter,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(MustContainCapital<T> value) mustContainCapital,
     required TResult Function(MustContainDigit<T> value) mustContainDigit,
@@ -373,6 +693,8 @@ class _$ShortPassword<T> implements ShortPassword<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortUsername<T> value)? shortUsername,
+    TResult Function(MustBeginWithLetter<T> value)? mustBeginWithLetter,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(MustContainCapital<T> value)? mustContainCapital,
     TResult Function(MustContainDigit<T> value)? mustContainDigit,
@@ -467,6 +789,8 @@ class _$MustContainCapital<T> implements MustContainCapital<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) invalidEmail,
+    required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) mustBeginWithLetter,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) mustContainCapital,
     required TResult Function(T failedValue) mustContainDigit,
@@ -479,6 +803,8 @@ class _$MustContainCapital<T> implements MustContainCapital<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? mustBeginWithLetter,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? mustContainCapital,
     TResult Function(T failedValue)? mustContainDigit,
@@ -495,6 +821,8 @@ class _$MustContainCapital<T> implements MustContainCapital<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InvalidEmail<T> value) invalidEmail,
+    required TResult Function(ShortUsername<T> value) shortUsername,
+    required TResult Function(MustBeginWithLetter<T> value) mustBeginWithLetter,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(MustContainCapital<T> value) mustContainCapital,
     required TResult Function(MustContainDigit<T> value) mustContainDigit,
@@ -508,6 +836,8 @@ class _$MustContainCapital<T> implements MustContainCapital<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortUsername<T> value)? shortUsername,
+    TResult Function(MustBeginWithLetter<T> value)? mustBeginWithLetter,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(MustContainCapital<T> value)? mustContainCapital,
     TResult Function(MustContainDigit<T> value)? mustContainDigit,
@@ -602,6 +932,8 @@ class _$MustContainDigit<T> implements MustContainDigit<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) invalidEmail,
+    required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) mustBeginWithLetter,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) mustContainCapital,
     required TResult Function(T failedValue) mustContainDigit,
@@ -614,6 +946,8 @@ class _$MustContainDigit<T> implements MustContainDigit<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? mustBeginWithLetter,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? mustContainCapital,
     TResult Function(T failedValue)? mustContainDigit,
@@ -630,6 +964,8 @@ class _$MustContainDigit<T> implements MustContainDigit<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InvalidEmail<T> value) invalidEmail,
+    required TResult Function(ShortUsername<T> value) shortUsername,
+    required TResult Function(MustBeginWithLetter<T> value) mustBeginWithLetter,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(MustContainCapital<T> value) mustContainCapital,
     required TResult Function(MustContainDigit<T> value) mustContainDigit,
@@ -643,6 +979,8 @@ class _$MustContainDigit<T> implements MustContainDigit<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortUsername<T> value)? shortUsername,
+    TResult Function(MustBeginWithLetter<T> value)? mustBeginWithLetter,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(MustContainCapital<T> value)? mustContainCapital,
     TResult Function(MustContainDigit<T> value)? mustContainDigit,
@@ -739,6 +1077,8 @@ class _$InvalidConfirmPassword<T> implements InvalidConfirmPassword<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) invalidEmail,
+    required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) mustBeginWithLetter,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) mustContainCapital,
     required TResult Function(T failedValue) mustContainDigit,
@@ -751,6 +1091,8 @@ class _$InvalidConfirmPassword<T> implements InvalidConfirmPassword<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? mustBeginWithLetter,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? mustContainCapital,
     TResult Function(T failedValue)? mustContainDigit,
@@ -767,6 +1109,8 @@ class _$InvalidConfirmPassword<T> implements InvalidConfirmPassword<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InvalidEmail<T> value) invalidEmail,
+    required TResult Function(ShortUsername<T> value) shortUsername,
+    required TResult Function(MustBeginWithLetter<T> value) mustBeginWithLetter,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(MustContainCapital<T> value) mustContainCapital,
     required TResult Function(MustContainDigit<T> value) mustContainDigit,
@@ -780,6 +1124,8 @@ class _$InvalidConfirmPassword<T> implements InvalidConfirmPassword<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortUsername<T> value)? shortUsername,
+    TResult Function(MustBeginWithLetter<T> value)? mustBeginWithLetter,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(MustContainCapital<T> value)? mustContainCapital,
     TResult Function(MustContainDigit<T> value)? mustContainDigit,

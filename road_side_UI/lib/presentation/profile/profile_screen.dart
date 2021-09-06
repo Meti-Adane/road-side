@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:road_side/presentation/setting/setting_screen.dart';
+import 'package:road_side/util/const.dart';
 
 class SettingsUI extends StatelessWidget {
   @override
@@ -19,28 +20,22 @@ class EditProfilePage extends StatefulWidget {
 
 class _EditProfilePageState extends State<EditProfilePage> {
   bool showPassword = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Theme.of(context).accentColor,
+        title: Text(Constants.profilePage),
+        centerTitle: true,
         elevation: 1,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.green,
+            color: Theme.of(context).buttonColor,
           ),
-          onPressed: () {},
+          onPressed: () => Navigator.pop(context),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.settings,
-              color: Colors.green,
-            ),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: Container(
         padding: EdgeInsets.only(left: 16, top: 25, right: 16),
@@ -50,9 +45,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
           },
           child: ListView(
             children: [
-              Text(
-                "Edit Profile",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+              Center(
+                child: Text(
+                  "Username",
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                ),
               ),
               SizedBox(
                 height: 15,
@@ -64,22 +61,23 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       width: 130,
                       height: 130,
                       decoration: BoxDecoration(
-                          border: Border.all(
-                              width: 4,
-                              color: Theme.of(context).scaffoldBackgroundColor),
-                          boxShadow: [
-                            BoxShadow(
-                                spreadRadius: 2,
-                                blurRadius: 10,
-                                color: Colors.black.withOpacity(0.1),
-                                offset: Offset(0, 10))
-                          ],
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(
-                                "https://images.pexels.com/photos/3307758/pexels-photo-3307758.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250",
-                              ))),
+                        border: Border.all(
+                            width: 4, color: Theme.of(context).accentColor),
+                        boxShadow: [
+                          BoxShadow(
+                              spreadRadius: 2,
+                              blurRadius: 10,
+                              color: Colors.black.withOpacity(0.1),
+                              offset: Offset(0, 10))
+                        ],
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(
+                            'assets/userimage.png',
+                          ),
+                        ),
+                      ),
                     ),
                     Positioned(
                         bottom: 0,
@@ -91,9 +89,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             shape: BoxShape.circle,
                             border: Border.all(
                               width: 4,
-                              color: Theme.of(context).scaffoldBackgroundColor,
+                              color: Theme.of(context).accentColor,
                             ),
-                            color: Colors.green,
+                            color: Theme.of(context).accentColor,
                           ),
                           child: Icon(
                             Icons.edit,
@@ -114,37 +112,30 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 height: 35,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  OutlinedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(horizontal: 50),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: IconButton(
+                      iconSize: 40,
+                      icon: Icon(
+                        Icons.cancel_outlined,
+                      ),
+                      onPressed: () {},
+                      tooltip: "Notifications",
                     ),
-                    onPressed: () {},
-                    child: Text("CANCEL",
-                        style: TextStyle(
-                            fontSize: 14,
-                            letterSpacing: 2.2,
-                            color: Colors.black)),
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.green,
-                      padding: EdgeInsets.symmetric(horizontal: 50),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: IconButton(
+                      iconSize: 40,
+                      icon: Icon(
+                        Icons.save_outlined,
+                      ),
+                      onPressed: () {},
+                      tooltip: "Notifications",
                     ),
-                    child: Text(
-                      "SAVE",
-                      style: TextStyle(
-                          fontSize: 14,
-                          letterSpacing: 2.2,
-                          color: Colors.white),
-                    ),
-                  )
+                  ),
                 ],
               )
             ],

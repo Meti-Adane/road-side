@@ -28,48 +28,30 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     SignInFormEvent event,
   ) async* {
     yield* event.map(
-      emailChanged: (e) async* {
-        yield state.copyWith(
-          emailAddress: EmailAddress(e.emailStr),
-          authFailureOrSuccessOption: none(),
-        );
-      },
-      passwordChanged: (e) async* {
-        yield state.copyWith(
-          password: Password(e.passwordStr),
-          authFailureOrSuccessOption: none(),
-        );
-      },
-      signInWithEmailAndPasswordPressed: (e) async* {
-        yield* _performActionOnAuthFacadeWithEmailAndPassword(
-            _authFacade.signInWithEmailAndPassword
-        );
+      signInWithUsernameAndPasswordPressed: (e) async* {
+        //TODO - directly send credential to api
+        yield* _performActionOnAuthFacadeWithUsernameAndPassword(
+             _authFacade.signInWithUsernameAndPassword
+         );
       },
     );
   }
 
-
-  Stream<SignInFormState> _performActionOnAuthFacadeWithEmailAndPassword(
-      Future<Either<AuthFailure, Unit>> Function(
-          {required EmailAddress emailAddress, required Password password})
-      forwardedCall,
-      ) async* {
+  Stream<SignInFormState> _performActionOnAuthFacadeWithUsernameAndPassword(
+    Future<Either<AuthFailure, Unit>> Function(
+      {required Username username, required Password password}
+    ) forwardedCall, 
+  )async*{
     late Either<AuthFailure, Unit> failureOrSuccess;
-
-    final isEmailValid = state.emailAddress.isValid();
-    final isPasswordValid = state.password.isValid();
-
-    if (isEmailValid && isPasswordValid) {
-      yield state.copyWith(
+    
+    yield state.copyWith(
         isSubmitting: true,
         authFailureOrSuccessOption: none(),
       );
-
-      failureOrSuccess = await forwardedCall(
-          emailAddress: state.emailAddress, password: state.password);
-
-    }
-    yield state.copyWith(
+    failureOrSuccess = await forwardedCall(
+          username: state.username, password: state.password);
+    
+     yield state.copyWith(
       isSubmitting: false,
       showErrorMessages: true,
       // optionOf is equivalent to:
@@ -77,6 +59,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
       authFailureOrSuccessOption: optionOf(failureOrSuccess),
     );
   }
+
 }
 
 
