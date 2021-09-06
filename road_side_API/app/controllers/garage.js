@@ -4,57 +4,56 @@ import jwt from "jsonwebtoken";
 import Garage from "../model/Garage.js";
 import Location from "../model/Location.js";
 
-export const getAllGarages = (req, res) => {
-  Garage.find(
-    {},
-    "_id name description opening_hour closing_hour location services contact"
-  )
-    .then((data) => {
-      if (!data) {
-        res
-          .status(204)
-          .send({ messgage: "NO CONTENT no garges registered" })
-          .end();
-      } else {
-        res.status(200).send({ messgage: "OK", garages: data });
-      }
-    })
-    .catch((err) => {
-      res
-        .status(500)
-        .send({ messgage: err || "INTERNAL SERVER ERROR" })
+export const getAllGarages = async (req, res, next) => {
+  try {
+    const garages = await Garage.find(
+      {},
+      "_id name description opening_hour closing_hour location services contact"
+    ).populate("services");
+
+    if (!garages) {
+      return res
+        .status(204)
+        .send({ messgage: "NO CONTENT no garges registered" })
         .end();
-    });
+    } else {
+      return res.status(200).send({ messgage: "OK", garages });
+    }
+  } catch (err) {
+    res
+      .status(500)
+      .send({ messgage: err || "INTERNAL SERVER ERROR" })
+      .end();
+  }
 };
 
-export const getGarageById = (req, res) => {
+export const getGarageById = async (req, res, next) => {
   const id = req.params.id;
 
   if (!id)
-    res.status(400).send({ messgage: "BAD REQUEST missing inputs" }).end();
-
-  Garage.findById(id)
-    .then((data) => {
-      if (!data)
-        return res
-          .status(404)
-          .send({ messgage: "NOT FOUND no garage with this id" })
-          .end();
-      res.status(200).send({ messgage: "OK", garage: data });
-    })
-    .catch((error) => {
-      if (error.name === "CastError") {
-        return res
-          .status(422)
-          .send({ message: "BAD REQUEST INVLAID ID TYPE " })
-          .end();
-      } else {
-        return res.status(500).send({ message: "INTERNAL SERVER ERROR" }).end();
-      }
-    });
+    return res
+      .status(400)
+      .send({ messgage: "BAD REQUEST missing inputs" })
+      .end();
+  if (!ObjectId.isValid(id))
+    return res
+      .status(422)
+      .send({ message: "Unprocessable Entity invalid id type" })
+      .end();
+  try {
+    const garageData = await Garage.findById(id).populate("services");
+    if (!garageData)
+      return res
+        .status(404)
+        .send({ messgage: "NOT FOUND no garage with this id" })
+        .end();
+    return res.status(200).send({ messgage: "OK", garage: garageData });
+  } catch (error) {
+    return res.status(500).send({ message: "INTERNAL SERVER ERROR" }).end();
+  }
 };
 
-export const addNewGarage = (req, res) => {
+export const addNewGarage = async (req, res, next) => {
   let garage = req.body;
 
   if (!(garage && Object.keys(garage).length >= 8)) {
@@ -67,83 +66,52 @@ export const addNewGarage = (req, res) => {
     $or: [{ name: garage.name }, { user_name: garage.user_name }],
   };
 
-  Garage.find(query)
-    .then((data) => {
-      if (data.length) {
-        res.status(409).send("Garage already exists").end();
-      } else {
-        //Encrypt password
-        let pin = Math.floor(1000 + Math.random() * 9000);
-        console.log(pin);
-        bcrypt
-          .hash(pin.toString(), 10)
-          .then((data) => {
-            garage.password = data;
-            const newGarage = new Garage(garage);
-            newGarage
-              .save()
-              .then((data) => {
-                if (data) {
-                  const updateDocument = {
-                    $push: { garages_available: data._id },
-                  };
-                  garage.location.forEach((location) => {
-                    const query = { name: location };
-                    Location.updateOne(query, updateDocument)
-                      .then((data) => {
-                        if (!data) {
-                          return res
-                            .status(404)
-                            .send({ messgae: "NOT FOUND couldnt update" })
-                            .end();
-                        }
-                      })
-                      .catch((err) => {
-                        return res
-                          .status(500)
-                          .send({ messgae: err || "INTERNAL SERVER error" })
-                          .end();
-                      });
-                  });
-                  const token = jwt.sign(
-                    { id: garage._id, user_name: garage.user_name },
-                    process.env.TOKEN_KEY,
-                    {
-                      expiresIn: "2h",
-                    }
-                  );
-                  // save garage token
-                  garage = data;
-                  garage.token = token;
-                  res.status(201).send({ message: "CREATED", garage }).end();
-                }
-              })
-              .catch((err) => {
-                res
-                  .status(500)
-                  .send({ message: "Error on saving garage" + err })
-                  .end();
-              });
-          })
-
-          .catch((err) =>
-            res
-              .status(500)
-              .send(err || "HASHING")
-              .end()
-          );
-      }
-    })
-    .catch((err) => {
-      res
+  const garageExists = await Garage.find(query);
+  if (garageExists.length)
+    return res.status(409).send("Garage already exists").end();
+  //Encrypt password
+  try {
+    let pin = Math.floor(1000 + Math.random() * 9000);
+    console.log(pin);
+    garage.password = await bcrypt.hash(pin.toString(), 10);
+    console.log(garage.password);
+    const newGarage = await new Garage(garage).save();
+    if (!newGarage)
+      return res
         .status(500)
-        .send({ message: "Error on checking if garage exists" })
+        .send({ message: "INTERNAL SERVER ERROR on saving" })
         .end();
+
+    const updateDocument = {
+      $push: { garages_available: newGarage._id },
+    };
+    garage.location.forEach(async (location) => {
+      let query = { name: location };
+      await Location.updateOne(query, updateDocument);
     });
+    const token = jwt.sign(
+      { id: garage._id, user_name: garage.user_name },
+      process.env.TOKEN_KEY,
+      {
+        expiresIn: "2h",
+      }
+    );
+    // save garage token
+    garage = newGarage;
+    garage.token = token;
+    return res.status(201).send({ message: "CREATED", garage }).end();
+  } catch (error) {
+    console.log("error catched", error);
+    return res
+      .status(500)
+      .send({ messgae: error || "INTERNAL SERVER error" })
+      .end();
+  }
 };
 
-export const updateGarage = async (req, res) => {
-  if (!req.body) {
+export const updateGarage = async (req, res, next) => {
+  const garage = req.body;
+  if (!garage) {
     return res
       .status(400)
       .send({
@@ -152,41 +120,40 @@ export const updateGarage = async (req, res) => {
       .end();
   }
   const id = req.params.id;
-  const isLocationUPdated = req.body.location && req.body.location.length != 0;
-  console.log(isLocationUPdated);
-  if (req.body.password) {
-    req.body.password = await bcrypt.hash(req.body.password, 10);
-    console.log(req.body.password, "req body ***********");
+  if (garage.password) {
+    garage.password = await bcrypt.hash(garage.password, 10);
   }
-  Garage.findByIdAndUpdate(id, req.body)
-    .then((data) => {
-      console.log("UPDATEDDDD");
-      if (!data) {
-        res
-          .status(404)
-          .send({
-            message: `NOT FOUND`,
-          })
-          .end();
-      } else
-        res
-          .status(201)
-          .send({
-            message: "Garage updated",
-            garage: data,
-          })
-          .end();
-    })
-    .catch((err) => {
-      res
-        .status(500)
+
+  try {
+    const isUpdated = await Garage.findByIdAndUpdate(id, garage);
+    if (!isUpdated)
+      return res
+        .status(404)
         .send({
-          message: err || "Error updating Tutorial with id=" + id,
+          message: `NOT FOUND`,
         })
         .end();
-    });
+    else {
+      const updatedGarageData = await Garage.findById(id).populate("services");
+      return res
+        .status(201)
+        .send({
+          message: "User updated",
+          garage: updatedGarageData,
+        })
+        .end();
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .send({
+        message: error || "Error updating Tutorial with id=" + id,
+      })
+      .end();
+  }
 };
-export const deleteGarage = async (req, res) => {
+export const deleteGarage = async (req, res, next) => {
   const id = req.params.id;
   if (!id)
     return res

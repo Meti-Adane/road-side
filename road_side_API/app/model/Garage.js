@@ -47,11 +47,24 @@ const garage_schema = mongoose.Schema(
     services: [
       {
         type: mongoose.Schema.Types.ObjectId,
+        ref: "service",
         required: true,
       },
     ],
-
+    incoming_requests: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "order",
+      },
+    ],
     ongoing_services: [
+      {
+        // only order ids are stored for ongoing services
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "order",
+      },
+    ],
+    order_history: [
       {
         // only order ids are stored for ongoing services
         type: mongoose.Schema.Types.ObjectId,

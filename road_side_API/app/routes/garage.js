@@ -12,6 +12,6 @@ router.get("/", getAllGarages);
 router.get("/:id", getGarageById);
 router.post("/register", addNewGarage);
 router.delete("/:id", deleteGarage);
-router.put("/:id", updateGarage);
+router.patch("/:id", updateGarage);
 
 export default router;
