@@ -1,4 +1,5 @@
 import bcrypt from "bcryptjs";
+import { ObjectId } from "bson";
 import jwt from "jsonwebtoken";
 import Garage from "../model/Garage.js";
 import Location from "../model/Location.js";
@@ -185,28 +186,37 @@ export const updateGarage = async (req, res) => {
         .end();
     });
 };
-export const deleteGarage = (req, res) => {
+export const deleteGarage = async (req, res) => {
   const id = req.params.id;
-
   if (!id)
-    res.status(400).send({ messgage: "BAD REQUEST missing inputs" }).end();
+    return res
+      .status(400)
+      .send({ messgage: "BAD REQUEST missing inputs" })
+      .end();
+  if (!ObjectId.isValid(id))
+    return res
+      .status(422)
+      .send({ message: "Unprocessable Entity invalid id type" })
+      .end();
 
-  Garage.findByIdAndRemove(id)
-    .then((data) => {
-      if (!data)
-        return res
-          .status(404)
-          .send({ messgage: "NOT FOUND no garage with this id" })
-          .end();
-      return res.status(204).send({ messgage: "NO CONTENT deleted" });
-    })
-    .catch((error) => {
-      if (error.name === "CastError") {
-        return res
-          .status(422)
-          .send({ message: "BAD REQUEST invalid id type" })
-          .end();
-      }
-      return res.status(500).send({ message: "INTERNAL SERVER ERROR" }).end();
-    });
+  const userExists = await Garage.findById(id);
+  console.log(userExists);
+  if (!userExists) {
+    return res
+      .status(404)
+      .send({ messgage: "NOT FOUND no garage with this id" })
+      .end();
+  } else {
+    try {
+      const deletedGarage = await Garage.findByIdAndRemove(id);
+      return res
+        .status(204)
+        .send({ messgage: "NO CONTENT garage deleted", deletedGarage });
+    } catch (error) {
+      return res
+        .status(500)
+        .send({ message: error || "INTERNAL SERVER ERROR", deletedGarage })
+        .end();
+    }
+  }
 };
