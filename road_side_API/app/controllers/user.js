@@ -28,7 +28,7 @@ export const getUserByID = (req, res, next) => {
     .catch((error) => {
       if (error.name === "CastError") {
         return res
-          .status(400)
+          .status(422)
           .send({ message: "BAD REQUEST INVLAID ID TYPE " })
           .end();
       }
