@@ -98,3 +98,32 @@ export const deleteUser = async (req, res) => {
 export const updateProfile = (req, res) => {};
 
 export const getUsersOnGoingServices = (req, res) => {};
+
+export const getUserOrderHistory = async (req, res) => {
+  const id = req.params.id;
+  if (!id)
+    return res
+      .status(400)
+      .send({ messgage: "BAD REQUEST missing inputs" })
+      .end();
+  if (!ObjectId.isValid(id))
+    return res
+      .status(422)
+      .send({ message: "Unprocessable Entity invalid id type" })
+      .end();
+  const user = await User.findById(id);
+  if (!user) {
+    return res
+      .status(404)
+      .send({ messgage: "NOT FOUND no User with this id" })
+      .end();
+  } else {
+    return res
+      .status(200)
+      .send({
+        messgage: "OK",
+        order_history: user.order_history,
+      })
+      .end();
+  }
+};
