@@ -95,9 +95,55 @@ export const deleteUser = async (req, res) => {
   }
 };
 
-export const updateProfile = (req, res) => {};
+export const updateUser = async (req, res) => {
+  const id = req.params.id;
+  if (!req.body) {
+    return res
+      .status(400)
+      .send({
+        message: "BAD REQUEST Data to update can not be empty!",
+      })
+      .end();
+  }
 
-export const getUsersOnGoingServices = (req, res) => {};
+  if (!ObjectId.isValid(id))
+    return res
+      .status(422)
+      .send({ message: "Unprocessable Entity invalid id type" })
+      .end();
+  const isPasswordUpdated = req.body.password;
+  // hash password if user has updated password
+  if (isPasswordUpdated) {
+    req.body.password = await bcrypt.hash(req.body.password, 10);
+  }
+
+  try {
+    const updatedUserData = await User.findByIdAndUpdate(id, req.body);
+    if (!updatedUserData)
+      return res
+        .status(404)
+        .send({
+          message: `NOT FOUND`,
+        })
+        .end();
+    else
+      return res
+        .status(201)
+        .send({
+          message: "User updated",
+          user: updatedUserData,
+        })
+        .end();
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .send({
+        message: error || "Error updating Tutorial with id=" + id,
+      })
+      .end();
+  }
+};
 
 export const getUserOrderHistory = async (req, res) => {
   const id = req.params.id;
