@@ -7,17 +7,23 @@ class Order{
   String Id;
   String UserId;
   String GarageId;
+  String ServiceId;
+  String Description;
+  String IssuedDate;
+  String IsPlaced;
   String Status;
   String CompletedDate;
-  String ServiceType;
 
   Order({
     required this.Id,
     required this.UserId,
     required this.GarageId,
+    required this.ServiceId,
+    required this.Description,
+    required this.IssuedDate,
+    required this.IsPlaced,
     required this.Status,
     required this.CompletedDate,
-    required this.ServiceType,
   });
 
   factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);

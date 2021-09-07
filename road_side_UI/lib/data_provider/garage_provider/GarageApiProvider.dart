@@ -2,21 +2,33 @@ import 'dart:convert';
 import 'package:road_side/data_provider/garage_provider/IGarageProvider.dart';
 import 'package:road_side/models/garage/GarageModel.dart';
 import 'package:http/http.dart' as http;
+import 'package:road_side/util/const.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class GarageApiProvider implements IGarageProvider {
-  String baseUrl = "api/garages";
-  final successCode = 200;
+  final http.Client _client;
+  String _baseUrl = Constants.baseUrl;
+  SharedPreferences? userSession;
+
+
+  GarageApiProvider(this._client){
+    sharedPreference();
+  }
+
+  Future<void> sharedPreference() async {
+    this.userSession = await SharedPreferences.getInstance();
+  }
 
   //TODO - Untrusted Code
   Future<Garage> getGarage(String GarageId) async {
-    final response = await http.get(Uri.parse(baseUrl));
+    final response = await http.get(Uri.parse(_baseUrl));
     return parseResponse(response);
   }
 
   Garage parseResponse(http.Response response) {
     final responseString = jsonDecode(response.body);
 
-    if (response.statusCode == successCode) {
+    if (response.statusCode == 200) {
       return Garage.fromJson(responseString);
     } else {
       throw Exception('Failed to load garages');

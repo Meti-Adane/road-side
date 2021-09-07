@@ -143,7 +143,9 @@ class _MainScreenState extends State<MainScreen> {
             Icons.airport_shuttle_rounded,
           ),
           //TODO -Actual Routing to ordering page
-          onPressed: () {},
+          onPressed: () {
+            //context.router.replace(SettingsPage());
+          },
         ),
       ),
     );

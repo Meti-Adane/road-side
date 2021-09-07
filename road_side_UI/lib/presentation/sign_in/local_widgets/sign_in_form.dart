@@ -14,15 +14,33 @@ class SignInForm extends StatelessWidget {
           () {},
           (either) => either.fold(
               (failure) => {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
                         content: failure.map(
-                            cancelledByUser: (_) => const Text('Canceled'),
-                            serverError: (_) => const Text('Server Error'),
-                            emailAlreadyInUse: (_) =>
-                                const Text('Email Already in Use'),
-                            invalidEmailAndPasswordCombination: (_) =>
-                                const Text(
-                                    'Invalid Email and password Combination'))))
+                          cancelledByUser: (_) => const Text(
+                            'Canceled',
+                          ),
+                          serverError: (_) => const Text(
+                            'Server Error',
+                          ),
+                          emailAlreadyInUse: (_) => const Text(
+                            'Email Already in Use',
+                          ),
+                          invalidEmailAndPasswordCombination: (_) => const Text(
+                            'Invalid Email and password Combination',
+                          ),
+                          incorrectUsernameAndPassword: (_) => const Text(
+                            'Incorrect Username or Password',
+                          ),
+                          invalidValue: (_) => const Text(
+                            'Invalid Parameter',
+                          ),
+                          notFound: (_) => const Text(
+                            'Not Found',
+                          ),
+                        ),
+                      ),
+                    )
                   },
               (_) {}));
     }, builder: (context, state) {

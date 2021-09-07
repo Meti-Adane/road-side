@@ -9,6 +9,7 @@ part of 'GarageModel.dart';
 Garage _$GarageFromJson(Map<String, dynamic> json) {
   return Garage(
     Name: json['Name'] as String,
+    Username: json['Username'] as String,
     Id: json['Id'] as String,
     ImageUrl: json['ImageUrl'] as String,
     ContactNumbers: json['ContactNumbers'] as List<dynamic>,
@@ -22,6 +23,7 @@ Garage _$GarageFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$GarageToJson(Garage instance) => <String, dynamic>{
       'Name': instance.Name,
+      'Username': instance.Username,
       'Id': instance.Id,
       'ImageUrl': instance.ImageUrl,
       'ContactNumbers': instance.ContactNumbers,
