@@ -9,8 +9,8 @@ import {
 const router = Router();
 
 router.post("/place_order", placeOrder);
-router.delete("/cancel_order", cancelOrder);
-router.get("/order_request", getIncomingOrder);
-router.patch("/accept_order", acceptOrder);
+router.delete("/:id/cancel_order/:order_id", cancelOrder);
+router.get("/:id/incoming", getIncomingOrder);
+router.patch("/:id/accept_order/:order_id", acceptOrder);
 
 export default router;

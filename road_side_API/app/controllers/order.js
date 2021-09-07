@@ -27,15 +27,15 @@ export const placeOrder = async (req, res) => {
     order.issued_date = Date.now();
   }
   const userHasPendingOrder = await Order.findOne({
-    user_id: req.body.user_id,
+    user_id: order.user_id,
     is_pending: "pending",
   });
 
   if (
     !(
-      ObjectId.isValid(req.body.user_id) &&
-      ObjectId.isValid(req.body.garage_id) &&
-      ObjectId.isValid(req.body.service_id)
+      ObjectId.isValid(order.user_id) &&
+      ObjectId.isValid(order.garage_id) &&
+      ObjectId.isValid(order.service_id)
     )
   )
     return res.status(422).send({ message: "CONFLICT" }).end();
@@ -61,39 +61,62 @@ export const placeOrder = async (req, res) => {
   return res.status(201).send({ message: "CREATED ", order: newOrder });
 };
 
-export const getIncomingOrder = (req, res) => {
+export const getIncomingOrder = async (req, res) => {
   const garage_id = req.params.id;
 
-  if (!garage_id) res.statu(400).send("BAD REQUEST");
+  if (!garage_id) res.status(400).send("BAD REQUEST");
 
-  Order.findOne({ garage_id: garage_id, is_pending: true }, (err, order) => {
-    if (err) res.status(500).send(err || "INTERNAL SERVER ERROR");
-    res.status(200).send({
-      message: "OK",
-      pending_order: order,
-    });
+  const pendingOrder = await Order.findOne({
+    garage_id: garage_id,
+    is_pending: true,
+  })
+    .populate("user_id", "first_name phone_number user_name")
+    .populate("service_id", "name");
+  if (!pendingOrder)
+    return res.status(404).send({ message: "NOT FOUND no pending order" });
+  return res.status(200).send({
+    message: "OK",
+    pendingOrder,
   });
 };
 
-export const completeOrder = (req, res) => {
-  const order_id = req.body.order_id;
-  const garage_id = req.body.garage_id;
-  const updateDocument = { completed_at: req.body.completed_at || Date.now };
+export const completeOrder = async (req, res) => {
+  const order = req.body;
+  const order_id = order.order_id;
+
+  const garage_id = req.params.id;
+
+  const updateDocument = [
+    { completed_at: order.completed_at || Date.now },
+    { status: "completed" },
+  ];
 
   const query = { id: order_id, garage_id: garage_id };
-  Order.updateOne(query, updateDocument, (err, data) => {
-    if (!data)
-      res
+  const order_detail = await Order.findById(order_id).populate("user_id");
+  console.log(order_detail.user_id.first_name);
+  // remove from ongoing services for user
+  // remove from on going services for garage
+  // update status of order to completed
+  // update user history
+
+  // update order status to completed
+  const compltedOrder = Order.updateOne(query, updateDocument, (err, data) => {
+    if (!completeOrder)
+      return res
         .status(404)
         .send("CONTENT NOT FOUND couldnt find order with garage id");
-    res.status(200).send({
+    //remove from on going services for user
+
+    return res.status(201).send({
       message: "OK order marked as complete",
+      order: completeOrder,
     });
   });
 };
 
-export const cancelOrder = (req, res) => {
-  const { user_id, order_id } = req.body;
+export const cancelOrder = async (req, res) => {
+  const id = req.params.id;
+  const order_id = req.params.order_id;
   const query = { user_id: user_id, id: order_id, is_pending: true };
   Order.deleteOne(query, (err, data) => {
     if (!data)
@@ -106,4 +129,60 @@ export const cancelOrder = (req, res) => {
   });
 };
 
-export const acceptOrder = async (req, res) => {};
+export const rejectOrder = async (req, res) => {};
+
+// add to users ongoing service
+// add to garages on going service
+// remove from incoming requests
+// change order status to accepted
+
+export const acceptOrder = async (req, res) => {
+  const id = req.params.id;
+  const order_id = req.params.order_id;
+
+  if (!(id && order_id))
+    return res.status(400).send({ message: "BAD REQUEST" });
+  if (!ObjectId.isValid(id) && ObjectId.isValid(order_id)) {
+    return res
+      .status(422)
+      .send({ message: "Unprocessable Entity invalid id type" })
+      .end();
+  }
+
+  const order = await Order.findById(order_id);
+
+  if (!(order && order.is_placed == "pending")) {
+    return res.status(404).send({ message: "NOT FOUND" });
+  }
+  try {
+    // updated order status
+    const updatedOrder = await Order.findByIdAndUpdate(order_id, {
+      is_placed: "accepted",
+      status: "ongoing",
+    });
+    // updated garage table
+    const garageUpdateDocument = {
+      $pull: { incoming_requests: order_id },
+      $push: { ongoing_services: order_id },
+    };
+    const updatedGarge = await Garage.findByIdAndUpdate(
+      order.garage_id,
+      garageUpdateDocument
+    );
+
+    // update user status
+    const userUpdateDocument = {
+      $push: { ongoing_services: order_id },
+    };
+    const updatedUser = await Garage.findByIdAndUpdate(
+      order.user_id,
+      userUpdateDocument
+    );
+    const newOrder = await Order.findById(order_id)
+      .populate("user_id", "first_name email user_name phone_number")
+      .populate("service_id", "name");
+    return res.status(201).send({ message: "CREATED", order: newOrder });
+  } catch (error) {
+    return res.status(500).send({ message: "SERVER INTERNAL ERROR" });
+  }
+};

@@ -4,17 +4,17 @@ const order_schema = mongoose.Schema(
   {
     user_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "user",
       required: true,
     },
     garage_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Garage",
+      ref: "garage",
       required: true,
     },
     service_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Service",
+      ref: "service",
       required: true,
     },
     description: {
