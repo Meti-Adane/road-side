@@ -14,8 +14,8 @@ Future<void> main() async {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Road Side',
-      //home: MainScreen(),
-      home: RegisterPage(),
+      home: MainScreen(),
+      //home: RegisterPage(),
     ),
   );
 }

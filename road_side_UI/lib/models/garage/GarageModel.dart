@@ -5,6 +5,7 @@ part 'GarageModel.g.dart';
 @JsonSerializable()
 class Garage {
   String Name;
+  String Username;
   String Id;
   String ImageUrl;
   List ContactNumbers;
@@ -16,6 +17,7 @@ class Garage {
 
   Garage({
     required this.Name,
+    required this.Username,
     required this.Id,
     required this.ImageUrl,
     required this.ContactNumbers,
