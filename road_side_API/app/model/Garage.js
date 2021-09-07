@@ -51,6 +51,11 @@ const garage_schema = mongoose.Schema(
         required: true,
       },
     ],
+    role: {
+      type: String,
+      default: "Garage",
+      lowercase: true,
+    },
     incoming_requests: [
       {
         type: mongoose.Schema.Types.ObjectId,

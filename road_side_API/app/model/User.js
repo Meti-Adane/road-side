@@ -51,6 +51,9 @@ const userSchema = mongoose.Schema(
     order_history: {
       type: Array,
     },
+    token: {
+      type: String,
+    },
 
     ongoing_services: {
       // can be retrived from order_history
