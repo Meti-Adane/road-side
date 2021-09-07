@@ -41,7 +41,10 @@ export const getGarageById = async (req, res, next) => {
       .send({ message: "Unprocessable Entity invalid id type" })
       .end();
   try {
-    const garageData = await Garage.findById(id).populate("services");
+    const garageData = await Garage.findById(id)
+      .populate("services")
+      .populate("ongoing_services")
+      .populate("order_history");
     if (!garageData)
       return res
         .status(404)

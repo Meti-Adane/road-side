@@ -68,7 +68,7 @@ const garage_schema = mongoose.Schema(
       {
         // only order ids are stored for ongoing services
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Order",
+        ref: "order",
       },
     ],
     token: {
