@@ -52,7 +52,7 @@ export const placeOrder = async (req, res) => {
   }
 
   const updateDocument = {
-    $push: { incoming_requests: order.garage_id },
+    $push: { incoming_requests: newOrder.id },
   };
   const notifyGargae = await Garage.findByIdAndUpdate(
     order.garage_id,
@@ -213,6 +213,8 @@ export const acceptOrder = async (req, res) => {
   const id = req.params.id;
   const order_id = req.params.order_id;
 
+  const order = await Order.findById(order_id);
+
   if (!(id && order_id))
     return res.status(400).send({ message: "BAD REQUEST" });
   if (!ObjectId.isValid(id) && ObjectId.isValid(order_id)) {
@@ -221,8 +223,6 @@ export const acceptOrder = async (req, res) => {
       .send({ message: "Unprocessable Entity invalid id type" })
       .end();
   }
-
-  const order = await Order.findById(order_id);
 
   if (!(order && order.is_placed == "pending") && order.garage_id == id) {
     return res.status(404).send({ message: "NOT FOUND" });
@@ -247,7 +247,7 @@ export const acceptOrder = async (req, res) => {
     const userUpdateDocument = {
       $push: { ongoing_services: order_id },
     };
-    const updatedUser = await Garage.findByIdAndUpdate(
+    const updatedUser = await User.findByIdAndUpdate(
       order.user_id,
       userUpdateDocument
     );
